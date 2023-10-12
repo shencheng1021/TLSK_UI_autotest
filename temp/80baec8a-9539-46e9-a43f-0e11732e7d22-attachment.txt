@@ -1,0 +1,2 @@
+INFO     TestMyLog:test_extdetails.py:20 ****************E信通二级页面，校验企业是否实名认证，测试开始****************
+INFO     TestMyLog:test_extdetails.py:28 ****************E信通二级页面，校验企业是否实名认证，测试结束****************

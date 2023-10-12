@@ -7,9 +7,6 @@
 @time: 2022/4/13 9:34
 """
 import os
-import time
-
-from selenium import webdriver
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -20,8 +17,12 @@ class BasePage:
         self.driver = driver
 
     def locator_element(self,loc):
-        return self.driver.find_element(*loc)
-
+        try:
+            WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc))
+            return self.driver.find_element(*loc)
+        except:
+            print("页面中未能找到 %s 元素"%(loc)
+)
     def click(self,loc):
         self.locator_element(loc).click()
 
@@ -73,6 +74,10 @@ class BasePage:
     #定义判断某个元素是否被加到了 dom 树里
     def presence_of_element_located(self,loc):
         WebDriverWait(self.driver,10).until(EC.presence_of_element_located(loc))
+
+    #判断某个元素中是否不存在于dom树或不可见
+    def invisibility_of_element_located(self,loc):
+        WebDriverWait(self.driver,10).until(EC.invisibility_of_element_located(loc))
 
     #定义等待一个元素是否出现的关键字
     def visibility_of_element_located(self,loc):

@@ -3,7 +3,7 @@
 """
 @author: shencheng
 @software: PyCharm
-@description: test
+@description: E信通产品详情页面
 @time: 2022/4/13 9:34
 """
 import time

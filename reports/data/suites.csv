@@ -1,0 +1,4 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Mon Oct 09 14:44:19 CST 2023","Mon Oct 09 14:44:19 CST 2023","775","test_case","test_extdetails","TestExtdetails","","","E信通二级页面，校验是否登录",""
+"passed","Mon Oct 09 14:44:31 CST 2023","Mon Oct 09 14:44:34 CST 2023","3679","test_case","test_extdetails","TestExtdetails","","","E信通二级页面，校验授权协议弹出窗",""
+"passed","Mon Oct 09 14:44:02 CST 2023","Mon Oct 09 14:44:08 CST 2023","5270","test_case","test_extdetails","TestExtdetails","","","E信通二级页面，校验企业是否实名认证",""

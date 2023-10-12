@@ -6,8 +6,12 @@
 @description: test
 @time: 2022/4/13 9:34
 """
+import datetime
 import os
 import time
+
+from datetime import datetime
+
 
 from selenium.webdriver.common.by import By
 
@@ -16,38 +20,48 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+from common.mysql_util import MysqlConnection
+
+sql="SELECT count(*),create_time FROM tjf_user01.t_core_enterprise_supplier " \
+            "WHERE core_number = 'TN2022042700010413' AND supplier_number = 'TN2023020600025803'"
+result=MysqlConnection('tjf_user01').QueryAll(sql)
+print(result[0][0])
+#print(time.localtime(time.time()))
+# dt=result[0][0]
+# print(dt.strftime("%Y%m%d"))
+
+#qqq=time.strftime('%Y%m%d',result[0][0])
+#print(qqq)
 
 
-
-driver = webdriver.Chrome()
+# driver = webdriver.Chrome()
+# #
+# filepath=os.path.abspath(os.path.dirname(__file__)).split("test_case")[0]
+# # print(filepath)
 #
-filepath=os.path.abspath(os.path.dirname(__file__)).split("test_case")[0]
-# print(filepath)
-
-
+#
 # driver.get('http://172.24.100.75:10006/#/login')
 # driver.implicitly_wait(10)
 # driver.maximize_window()
 # driver.switch_to.frame('child')
 # time.sleep(2)
 # driver.find_element(By.XPATH,"//*[@id='tab-second']").click()
-# driver.find_element(By.XPATH, "//input[@placeholder='请输入手机号码']").send_keys('17785425547')
+# driver.find_element(By.XPATH, "//input[@placeholder='请输入手机号码']").send_keys('17754124411')
 # driver.find_element(By.XPATH, "//div[@class='c-phonecode-input']/div/input").send_keys('230516')
 # driver.find_element(By.XPATH, "//span[@class='el-checkbox__inner']").click()
 # driver.find_element(By.XPATH, "//div[@class='el-tabs__content']/button").click()
 # driver.switch_to.default_content()
-#
 # WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='el-dropdown']/div")))
-driver.get("http://172.24.100.75:10006/#/market/detail/e-index")
-driver.maximize_window()
-time.sleep(2)
-driver.find_element(By.XPATH,"//span[contains(text(),'立即申请')]").click()
-
-loc=(By.XPATH,"//div[@class='el-message-box__message']/p")
-
-locater=WebDriverWait(driver,10).until(EC.visibility_of_element_located(loc))
-print(locater.text)
-
+#
+# driver.get('http://172.24.100.75:10006/#/market/eChannelPage')
+#
+# driver.find_element(By.XPATH, "//div[contains(text(),'供应商管理')]").click()
+# driver.find_element(By.XPATH, "//div[@class='container-m']/header/form/div[3]/button[1]").click()
+# driver.find_element(By.XPATH, "//div[@class='el-dialog__body']/header/form/div/div/input").send_keys("重庆帆舟运输有限公司")
+# driver.find_element(By.XPATH, "//div[@class='el-dialog__body']/header/form/div[2]/button").click()
+# driver.find_element(
+# By.XPATH, '//*[@id="app"]/div[2]/div[1]/div/div[2]/div/div/div[4]/div/div/div[2]/main/div[1]/div[4]/div[2]/table/tbody/tr/td[1]/div/label/span/span').click()
+# driver.find_element(By.XPATH, "//div[@class='table-list']/div[4]/div/div/div[3]/span/button[1]").click()
 
 
 

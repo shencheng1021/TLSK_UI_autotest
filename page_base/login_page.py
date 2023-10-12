@@ -43,6 +43,7 @@ class LoginPage(BasePage):
             self.send_keys(LoginPage.password_loc,password)
             self.click(LoginPage.checkbox_loc)
             self.click(LoginPage.loginbutton_loc)
+            time.sleep(3)
         except NoSuchElementException as e:
             print("no such element",e)
         else:

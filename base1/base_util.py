@@ -14,11 +14,11 @@ from common.logger_util import Logger
 
 
 
-class BaseUtil(unittest.TestCase):
+class BaseUtil:
 
     mylogger = Logger(logger='TestMyLog').getlog()
 
-    def setUp(self) -> None:
+    def setup_method(self) -> None:
         global driver
         self.driver = webdriver.Chrome()
         driver = self.driver
@@ -26,6 +26,6 @@ class BaseUtil(unittest.TestCase):
         self.driver.get('http://172.24.100.75:10006/#/login')
         self.driver.maximize_window()
 
-    def tearDown(self) -> None:
+    def teardown_method(self) -> None:
         time.sleep(5)
         self.driver.quit()
