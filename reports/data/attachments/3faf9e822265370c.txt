@@ -1,2 +1,0 @@
-INFO     TestMyLog:test_extdetails.py:32 ****************E信通二级页面，校验是否登录，测试开始****************
-INFO     TestMyLog:test_extdetails.py:37 ****************E信通二级页面，校验是否登录，测试结束****************

@@ -21,26 +21,24 @@ class ExtPage(BasePage):
     apply_now_button_loc=(By.XPATH,"//span[contains(text(),'立即申请')]")
 
     #定位数据授权协议
-    license_agreement_loc=(By.XPATH,"//span[contains(text(),'E信通业务合作协议')]")
+    license_agreement_loc=(By.XPATH,"//div[@class='pro-common-page']/div[6]/div/div/span")
 
     #定位未实名认证提示
-    not_auth_warn_loc=(By.XPATH,"//p[contains(text(),'查询完成,未完成实名认证')]")
+    not_auth_warn_loc=(By.XPATH,"//p[@class='el-message__content']")
 
     #定位未登录提示框
     not_login_warn_loc=(By.XPATH,"//div[@class='el-message-box__message']/p")
 
     #登录成功进入E信通产品详情页
     def goto_ext_product_lg_s(self):
-        self.quit_iframe()
-        self.presence_of_element_located(ExtPage.login_success_loc)
-        time.sleep(1)
-        self.goto_url('http://172.24.100.75:10006/#/market/detail/e-index')
+        time.sleep(3)
+        self.goto_url('http://172.24.100.75:10006/#/market/productCommon/index?proType=extSupply')
         self.click(ExtPage.apply_now_button_loc)
 
 
     #未登录进入E信通产品详情页
     def goto_ext_product_lg_f(self):
-        self.goto_url('http://172.24.100.75:10006/#/market/detail/e-index')
+        self.goto_url('http://172.24.100.75:10006/#/market/productCommon/index?proType=extSupply')
         self.click(ExtPage.apply_now_button_loc)
 
     #检查是是否弹出校验未登录的弹出窗
@@ -50,6 +48,7 @@ class ExtPage(BasePage):
     #检查是否弹出数据授权协议
     def check_point_license_agreement(self):
         return self.visibility_of_element_located(ExtPage.license_agreement_loc)
+
 
     def check_pointt_auth_status(self):
         return self.visibility_of_element_located(ExtPage.not_auth_warn_loc)

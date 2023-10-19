@@ -1,2 +1,0 @@
-INFO     TestMyLog:test_extdetails.py:115 ********查询供应商，查询结果存在,测试开始**********
-INFO     TestMyLog:test_extdetails.py:121 检查点打印：暂无数据

@@ -21,10 +21,14 @@ class BasePage:
             WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except:
-            print("页面中未能找到 %s 元素"%(loc)
-)
+            print("页面中未能找到" +str(loc)+ "元素")
+
+
     def click(self,loc):
-        self.locator_element(loc).click()
+        try:
+            WebDriverWait(self.driver,10).until(EC.element_to_be_clickable(self.locator_element(loc))).click()
+        except:
+            print(str(loc)+"元素不可点击")
 
     def send_keys(self,loc,key):
         self.locator_element(loc).send_keys(key)
@@ -79,10 +83,12 @@ class BasePage:
     def invisibility_of_element_located(self,loc):
         WebDriverWait(self.driver,10).until(EC.invisibility_of_element_located(loc))
 
-    #定义等待一个元素是否出现的关键字
+    #定义一直等待某元素可见，默认超时10秒的关键字
     def visibility_of_element_located(self,loc):
         text=WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc)).text
         return text
+
+
 
 
 

@@ -22,10 +22,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from common.mysql_util import MysqlConnection
 
-sql="SELECT count(*),create_time FROM tjf_user01.t_core_enterprise_supplier " \
-            "WHERE core_number = 'TN2022042700010413' AND supplier_number = 'TN2023020600025803'"
-result=MysqlConnection('tjf_user01').QueryAll(sql)
-print(result[0][0])
+# sql="SELECT count(*),create_time FROM tjf_user01.t_core_enterprise_supplier " \
+#             "WHERE core_number = 'TN2022042700010413' AND supplier_number = 'TN2023020600025803'"
+# result=MysqlConnection('tjf_user01').QueryAll(sql)
+# print(result[0][0])
 #print(time.localtime(time.time()))
 # dt=result[0][0]
 # print(dt.strftime("%Y%m%d"))
@@ -34,26 +34,34 @@ print(result[0][0])
 #print(qqq)
 
 
-# driver = webdriver.Chrome()
+driver = webdriver.Chrome()
 # #
 # filepath=os.path.abspath(os.path.dirname(__file__)).split("test_case")[0]
 # # print(filepath)
 #
 #
-# driver.get('http://172.24.100.75:10006/#/login')
-# driver.implicitly_wait(10)
-# driver.maximize_window()
-# driver.switch_to.frame('child')
-# time.sleep(2)
-# driver.find_element(By.XPATH,"//*[@id='tab-second']").click()
-# driver.find_element(By.XPATH, "//input[@placeholder='请输入手机号码']").send_keys('17754124411')
-# driver.find_element(By.XPATH, "//div[@class='c-phonecode-input']/div/input").send_keys('230516')
-# driver.find_element(By.XPATH, "//span[@class='el-checkbox__inner']").click()
-# driver.find_element(By.XPATH, "//div[@class='el-tabs__content']/button").click()
-# driver.switch_to.default_content()
-# WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='el-dropdown']/div")))
-#
-# driver.get('http://172.24.100.75:10006/#/market/eChannelPage')
+driver.get('http://172.24.100.75:10006/#/login')
+driver.implicitly_wait(10)
+driver.maximize_window()
+driver.switch_to.frame('child')
+time.sleep(2)
+driver.find_element(By.XPATH,"//*[@id='tab-second']").click()
+driver.find_element(By.XPATH, "//input[@placeholder='请输入手机号码']").send_keys('13730870086')
+driver.find_element(By.XPATH, "//div[@class='c-phonecode-input']/div/input").send_keys('230516')
+driver.find_element(By.XPATH, "//span[@class='el-checkbox__inner']").click()
+driver.find_element(By.XPATH, "//div[@class='el-tabs__content']/button").click()
+driver.switch_to.default_content()
+WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='el-dropdown']/div")))
+
+driver.get('http://172.24.100.75:10006/#/approveProcess')
+driver.find_element(By.XPATH,"//table[@class='el-table__body']/tbody/tr/td[9]/div/span/button").click()
+driver.find_element(By.XPATH,"//span[@class='el-switch__core']").click()
+driver.find_element(By.XPATH,"//div[@class='oa-info']/div[2]/div[2]/div/div[3]/table/tbody/tr[1]/td[1]/div/label/span/span").click()
+time.sleep(5)
+driver.find_element(By.XPATH,'//*[@id="app"]/div[2]/div[1]/div/div[3]/div[4]/div[2]/div[2]/div/div[4]/div[2]/table/tbody/tr/td[6]/div/span/button[1]/span').click()
+driver.find_element(By.XPATH,"//div[@class='bottom-text vertical-center']/label/span/span").click()
+driver.find_element(By.XPATH,"//span[contains(text(),'自动盖章')]").click()
+driver.find_element(By.XPATH,"//span[contains(text(),'通过')]").click()
 #
 # driver.find_element(By.XPATH, "//div[contains(text(),'供应商管理')]").click()
 # driver.find_element(By.XPATH, "//div[@class='container-m']/header/form/div[3]/button[1]").click()

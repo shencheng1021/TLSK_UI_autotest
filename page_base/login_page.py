@@ -30,6 +30,9 @@ class LoginPage(BasePage):
 
     merchants_center_loc=(By.XPATH,"//div[@class='tag-inside']/ul[6]/li")
 
+    # 判断是否登录成功
+    login_success_loc = (By.XPATH, "//div[@class='el-dropdown']/div")
+
 
 
     #页面的动作
@@ -48,6 +51,17 @@ class LoginPage(BasePage):
             print("no such element",e)
         else:
             pass
+
+    def login_success_eshop(self,id,username,password):
+        self.goto_iframe(id)
+        time.sleep(1)
+        self.click(LoginPage.slmode_loc)
+        self.send_keys(LoginPage.username_loc,username)
+        self.send_keys(LoginPage.password_loc,password)
+        self.click(LoginPage.checkbox_loc)
+        self.click(LoginPage.loginbutton_loc)
+        self.quit_iframe()
+        self.presence_of_element_located(LoginPage.login_success_loc)
 
 
 

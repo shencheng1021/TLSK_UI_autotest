@@ -90,6 +90,7 @@ class ExtSMPage(BasePage):
     @allure.step("单笔新增供应商弹窗:点击确定按钮")
     def alert_confirm_button(self):
         self.click(ExtSMPage.allert_confirm_loc)
+        self
 
     @allure.step("供应商管理列表，输入供应商名称")
     def input_supplier_name(self,key):

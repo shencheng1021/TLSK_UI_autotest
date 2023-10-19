@@ -1,2 +1,0 @@
-INFO     TestMyLog:test_extdetails.py:41 ****************E信通二级页面，校验授权协议弹出窗，测试开始****************
-INFO     TestMyLog:test_extdetails.py:48 ****************E信通二级页面，校验授权协议弹出窗，测试结束****************
