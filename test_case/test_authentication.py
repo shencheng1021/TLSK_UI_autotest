@@ -26,7 +26,7 @@ class TestAuth(BaseUtil):
         '''
         self.mylogger.info("********************初始化实名认证数据完成，登录开始**********************")
         lg=LoginPage(self.driver)
-        lg.slmode_eshop('child','17754756654','230516')
+        lg.login_success_eshop('child','17754756654','230516')
         self.mylogger.info("********************登录结束，进入实名认证操作**********************")
         ah=AuthBage(self.driver)
         ah.auth_business_shop('营业执照.jpg',"北京市","北京市","朝阳区")
@@ -46,7 +46,7 @@ class TestAuth(BaseUtil):
         '''
         self.mylogger.info("********************登录开始**********************")
         lg = LoginPage(self.driver)
-        lg.slmode_eshop('child', '17754756655', '230516')
+        lg.login_success_eshop('child', '17754756655', '230516')
         self.mylogger.info("********************登录结束，进入实名认证操作*********************")
         ah = AuthBage(self.driver)
         ah.auth_business_shop('营业执照.jpg', "北京市", "北京市", "朝阳区")
@@ -59,4 +59,5 @@ class TestAuth(BaseUtil):
 
 
 
-
+if __name__ == '__main__':
+    pytest.main()

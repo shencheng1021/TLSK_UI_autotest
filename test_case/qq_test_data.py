@@ -21,7 +21,7 @@ class TestDemo(BaseUtil):
 
     def test_demo01(self):
         #lg = LoginPage(self.driver)
-        self.lg.slmode_eshop('child', '17754856657', '230516')
+        self.slmode_eshop('child', '17754856657', '230516')
 
 
 

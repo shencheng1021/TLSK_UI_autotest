@@ -28,10 +28,10 @@ class LoginPage(BasePage):
     checkcode_fail_loc=(By.XPATH,"//p[@class='el-message__content']")
     checkcode_null_loc = (By.XPATH, "//form[@class ='el-form login-form-body']/div[3]/div/div[2]")
 
-    merchants_center_loc=(By.XPATH,"//div[@class='tag-inside']/ul[6]/li")
+    merchants_center_loc=(By.XPATH,"//div[@class='tag-inside']/ul[7]/li")
 
     # 判断是否登录成功
-    login_success_loc = (By.XPATH, "//div[@class='el-dropdown']/div")
+    login_success_tips_loc = (By.XPATH, "//p[contains(text(),'登录成功')]")
 
 
 
@@ -61,7 +61,8 @@ class LoginPage(BasePage):
         self.click(LoginPage.checkbox_loc)
         self.click(LoginPage.loginbutton_loc)
         self.quit_iframe()
-        self.presence_of_element_located(LoginPage.login_success_loc)
+        self.is_visible(LoginPage.login_success_tips_loc)
+        self.is_not_visible(LoginPage.login_success_tips_loc)
 
 
 

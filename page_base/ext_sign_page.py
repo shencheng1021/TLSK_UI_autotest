@@ -57,12 +57,10 @@ class ExtSignPage(BasePage):
     @allure.step("点击单笔新增融信签发按钮")
     def click_add_credit(self):
         self.click(ExtSignPage.sign_button_loc)
-        self.visibility_of_element_located(ExtSignPage.quota_source_input_loc)
 
     @allure.step("选择额度来源")
     def input_quota_source(self):
         self.click(ExtSignPage.quota_source_input_loc)
-
         self.click(ExtSignPage.quota_souce_option_loc)
 
     @allure.step("选择供应商")

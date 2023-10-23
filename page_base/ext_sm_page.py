@@ -21,6 +21,9 @@ class ExtSMPage(BasePage):
     #定位联系人姓名
     contact_name_loc=(By.XPATH,"//thead[@class='has-gutter']/tr/th[3]/div")
 
+    #检查是否进入E信通产品操作页面的定位
+    ext_title_loc=(By.XPATH,"//div[@class='e-left-box content']/div")
+
     #供应商管理菜单定位
     supplier_manage_loc=(By.XPATH,"//div[contains(text(),'供应商管理')]")
 
@@ -38,7 +41,7 @@ class ExtSMPage(BasePage):
                               '/div/div/div[2]/main/div[1]/div[4]/div[2]/table/tbody/tr/td[1]/div/label/span/span')
 
     #定位新增供应商弹窗中的确认按钮
-    allert_confirm_loc=(By.XPATH,"//div[@class='table-list']/div[4]/div/div/div[3]/span/button[1]")
+    alert_confirm_loc=(By.XPATH,"//div[@class='table-list']/div[4]/div/div/div[3]/span/button[1]")
 
     #定位供应商管理列表，供应商名称搜索框
     supplier_name_input_loc=(By.XPATH,"//div[@class='container-m']/header/form/div[1]/div/input")
@@ -52,7 +55,7 @@ class ExtSMPage(BasePage):
     #定位删除供应商确认弹窗中的确认按钮
     del_alert_confirm_loc=(By.XPATH,"//div[@class='el-message-box__btns']/button[2]")
 
-    #判断检查结果是否更新的定位:
+    #判断查询结果是否更新的定位:
     select_is_update_loc=(By.XPATH,'//*[@id="app"]/div[2]/div[1]/div/div[2]/div/div/div[1]/div[3]/table/tbody/tr[2]/td[2]')
 
     #检查点元素定位，定位供应商列表供应商企业名称
@@ -60,6 +63,9 @@ class ExtSMPage(BasePage):
 
     # 检查点元素定位，定位供应商列表查询无结果时的定位
     supplier_list_result_loc=(By.XPATH,'//*[@id="app"]/div[2]/div[1]/div/div[2]/div/div/div[1]/div[3]/div/span')
+
+    #供应商新增成功的提示定位
+    add_supplier_success_tips_loc=(By.XPATH,"//p[contains(text(),'新增成功！')]")
 
 
     @allure.step("点击单笔新增供应商按钮")
@@ -89,8 +95,8 @@ class ExtSMPage(BasePage):
 
     @allure.step("单笔新增供应商弹窗:点击确定按钮")
     def alert_confirm_button(self):
-        self.click(ExtSMPage.allert_confirm_loc)
-        self
+        self.click(ExtSMPage.alert_confirm_loc)
+        self.is_not_visible(ExtSMPage.add_supplier_success_tips_loc)
 
     @allure.step("供应商管理列表，输入供应商名称")
     def input_supplier_name(self,key):
@@ -110,8 +116,9 @@ class ExtSMPage(BasePage):
 
     @allure.step("检查是否成功进入E信通供应商管理页面")
     def check_supplier_manage(self):
-        return self.get_text(ExtSMPage.contact_name_loc)
+        return self.get_text(ExtSMPage.ext_title_loc)
 
+    @allure.step("输入供应商名称并查询的动作")
     def selct_supplier_shop(self,key):
         self.goto_url('http://172.24.100.75:10006/#/market/eChannelPage')
         self.click(ExtSMPage.supplier_manage_loc)

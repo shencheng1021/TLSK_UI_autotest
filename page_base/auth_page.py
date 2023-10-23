@@ -7,9 +7,7 @@
 @time: 2023/9/11 10:57
 """
 import time
-
 from selenium.webdriver.common.by import By
-
 from base1.base_page import BasePage
 
 
@@ -24,7 +22,7 @@ class AuthBage(BasePage):
     #定位修改实名认证按钮
     update_auth_loc=(By.XPATH,"//span[contains(text(),'修改实名认证信息')]")
 
-    #定位营业执照上次控件
+    #定位营业执照上次传控件
     business_upload_loc=(By.XPATH,"//div[@class='busiLice-list']/div/div/div/input")
 
     #定位省下拉框
@@ -75,21 +73,21 @@ class AuthBage(BasePage):
     #定位重复认证提示确认按钮
     failtips_submmit_loc=(By.XPATH,"//div[@class='el-message-box__btns']/button/span")
 
+    #定位图片上传是否成功提示框
+    upload_picture_tips_loc=(By.XPATH,"//p[@class='el-message__content']")
+
 
 
 
     #定义完善企业信息
     def auth_business_shop(self,key,province,city,district):
-
-            self.quit_iframe()
-            self.click(AuthBage.merchants_center_loc)
-            self.click(AuthBage.enterprise_management_loc)
-            self.click(AuthBage.update_auth_loc)
-            self.upload_file(AuthBage.business_upload_loc,key)
-            time.sleep(5)
-            self.select_value(AuthBage.province_select_loc,province)
-            self.select_value(AuthBage.city_select_loc,city)
-            self.select_value(AuthBage.district_select_loc,district)
+        self.click(AuthBage.merchants_center_loc)
+        self.click(AuthBage.enterprise_management_loc)
+        self.click(AuthBage.update_auth_loc)
+        self.upload_file(AuthBage.business_upload_loc,key)
+        self.select_value(AuthBage.province_select_loc,province)
+        self.select_value(AuthBage.city_select_loc,city)
+        self.select_value(AuthBage.district_select_loc,district)
 
     #定义完善法人信息
     def auth_lagal_shop(self,idcardfront,idcardbackside,phone):

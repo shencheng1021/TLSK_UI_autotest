@@ -23,16 +23,16 @@ class ExtSignforPage(BasePage):
     signfor_button_loc = (By.XPATH,"//div[@class='table-list']/div[1]/div[5]/div[2]/table/tbody/tr[1]/td[8]/div[1]/button[1]/span")
 
     #签收成功弹窗，去融资按钮定位
-    alert_gotofinancing_button_loc = (By.XPATH,"//div[@class='el-message-box__btns']/button[1]/span")
+    alert_gotofinancing_button_loc = (By.XPATH,"//div[@class='el-message-box__btns']/button[2]/span")
 
     # 签收成功弹窗，取消按钮定位
-    alert_cancel_button_loc = (By.XPATH, "//div[@class='el-message-box__btns']/button[2]/span")
+    alert_cancel_button_loc = (By.XPATH, "//div[@class='el-message-box__btns']/button[1]/span")
 
     #签收列表操作列，去融资按钮定位
     gotofinancing_button_loc = (By.XPATH,"//div[@class='table-list']/div/div[5]/div[2]/table/tbody/tr[1]/td[8]/div/button[2]")
 
-    #签收列表，签收状态定位
-    signfor_status_loc=(By.XPATH,"//div[@class='table-list']/div/div[5]/div[2]/table/tbody/tr[1]/td[6]/div/span")
+    #签收成功的提示定位
+    signfor_success_tips_loc=(By.XPATH,"//div[@class='el-message-box__message']/p")
 
     #定位融资申请页面，下一步按钮
     nexttep_button_loc = (By.XPATH,"//span[contains(text(),'下一步')]")
@@ -59,7 +59,6 @@ class ExtSignforPage(BasePage):
     @allure.step("点击融信签收按钮完成签收")
     def signfor_shop(self):
         self.click(ExtSignforPage.signfor_button_loc)
-        self.click(ExtSignforPage.alert_cancel_button_loc)
 
     @allure.step("点击去融资按钮，进行融资申请")
     def financing_apply_shop(self):
@@ -71,7 +70,7 @@ class ExtSignforPage(BasePage):
 
     @allure.step("检查是否签收成功")
     def check_signfor_status(self):
-        return self.get_text(ExtSignforPage.signfor_status_loc)
+        return self.get_text(ExtSignforPage.signfor_success_tips_loc)
 
 
     @allure.step("检查融资申请是否成功")

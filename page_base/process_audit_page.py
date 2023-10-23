@@ -6,6 +6,8 @@
 @description: 流程审核的页面对象层
 @time: 2023/10/15 15:14
 """
+import time
+
 import allure
 from selenium.webdriver.common.by import By
 
@@ -83,12 +85,13 @@ class ProcessAuditPage(BasePage):
         self.click(ProcessAuditPage.settle_receipt_switch_loc)
         self.click(ProcessAuditPage.oa_checkbox_loc)
         self.click(ProcessAuditPage.seal_button_loc)
+        time.sleep(3)
         self.click(ProcessAuditPage.payment_checkbox_loc)
         self.click(ProcessAuditPage.auto_seal_button_loc)
         self.click(ProcessAuditPage.pass_button_loc)
 
     @allure.step("检查审核结果")
     def check_audit_result(self):
-        return self.get_text(ProcessAuditPage.audit_tips_loc)
+        return self.is_visible_text(ProcessAuditPage.audit_tips_loc)
 
 

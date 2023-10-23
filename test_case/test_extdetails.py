@@ -67,7 +67,7 @@ class TestExtdetails(BaseUtil):
         Ext_sm=ExtSMPage(self.driver)
         actual=Ext_sm.check_supplier_manage()
         self.mylogger.info("检点点打印："+actual)
-        assert actual == "联系人姓名"
+        assert actual == "E信通"
         self.mylogger.info("**********核心企业成功进入E信通产品操作页面,测试结束*********")
 
     @allure.title("新增供应商成功")
@@ -143,9 +143,9 @@ class TestExtdetails(BaseUtil):
         assert actual == '新增成功'
         self.mylogger.info("*******融信签发，签发成功，测试结束********")
 
-    @allure.title("审核通过")
+    @allure.title("制单通过")
     def test_temp_process_audit_10(self):
-        self.mylogger.info("*******融信签发，审核通过，测试开始********")
+        self.mylogger.info("*******融信签发，制单通过，测试开始********")
         lg = LoginPage(self.driver)
         lg.login_success_eshop('child', '13730870086', '230516')
         pap=ProcessAuditPage(self.driver)
@@ -154,7 +154,7 @@ class TestExtdetails(BaseUtil):
         actual=pap.check_audit_result()
         self.mylogger.info("检查点打印：" + str(actual))
         assert actual == '审核成功!'
-        self.mylogger.info("*******融信签发，审核通过，测试结束********")
+        self.mylogger.info("*******融信签发，制单通过，测试结束********")
 
     @allure.title('初审审核通过')
     def test_temp_process_first_instance_pass_11(self):
@@ -208,7 +208,7 @@ class TestExtdetails(BaseUtil):
         esp.signfor_shop()
         actual=esp.check_signfor_status()
         self.mylogger.info("检查点打印：" + str(actual))
-        assert actual == '已签收'
+        assert actual == '签收成功,是否立即发起融资申请'
         self.mylogger.info("*******融信签收，签收通过，测试结束********")
 
     @allure.title("发起融资申请成功")

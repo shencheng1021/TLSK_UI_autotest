@@ -43,13 +43,13 @@ class ExtPage(BasePage):
 
     #检查是是否弹出校验未登录的弹出窗
     def check_point_not_login(self):
-        return self.visibility_of_element_located(ExtPage.not_login_warn_loc)
+        return self.is_visible_text(ExtPage.not_login_warn_loc)
 
     #检查是否弹出数据授权协议
     def check_point_license_agreement(self):
-        return self.visibility_of_element_located(ExtPage.license_agreement_loc)
+        return self.is_visible_text(ExtPage.license_agreement_loc)
 
 
     def check_pointt_auth_status(self):
-        return self.visibility_of_element_located(ExtPage.not_auth_warn_loc)
+        return self.is_visible_text(ExtPage.not_auth_warn_loc)
 

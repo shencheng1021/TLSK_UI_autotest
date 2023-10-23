@@ -7,6 +7,9 @@
 @time: 2022/4/13 9:34
 """
 import os
+import time
+
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -18,7 +21,7 @@ class BasePage:
 
     def locator_element(self,loc):
         try:
-            WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver,10).until(EC.presence_of_element_located(loc))
             return self.driver.find_element(*loc)
         except:
             print("页面中未能找到" +str(loc)+ "元素")
@@ -50,9 +53,10 @@ class BasePage:
         s=Select(self.locator_element(loc))
         s.select_by_value(value)
 
-    def upload_file(self,loc,filepath):
+    def upload_file(self,loc,filename):
         relativepath=os.path.dirname(__file__).split("base1")[0]+'/data/'
-        self.send_keys(loc,relativepath+filepath)
+        self.send_keys(loc,relativepath+filename)
+        time.sleep(3)
 
     #定义弹窗确认的关键字
     def alert_accept(self):
@@ -83,10 +87,27 @@ class BasePage:
     def invisibility_of_element_located(self,loc):
         WebDriverWait(self.driver,10).until(EC.invisibility_of_element_located(loc))
 
-    #定义一直等待某元素可见，默认超时10秒的关键字
-    def visibility_of_element_located(self,loc):
+    #定义一直等待某元素可见，并返回定位元素中的文本,默认超时10秒的关键字
+    def is_visible_text(self,loc):
         text=WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc)).text
         return text
+
+    # 定义一直等待某元素可见,默认超时10秒
+    def is_visible(self,loc):
+        try:
+            WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc))
+            return True
+        except TimeoutException:
+            return False
+
+    # 定义一直等待某元素可见,默认超时10秒
+    def is_not_visible(self,loc):
+        try:
+            WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc))
+            return True
+        except TimeoutException:
+            return False
+
 
 
 
