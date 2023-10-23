@@ -144,6 +144,7 @@ class TestExtdetails(BaseUtil):
         self.mylogger.info("*******融信签发，签发成功，测试结束********")
 
     @allure.title("制单通过")
+    @pytest.mark.usefixtures('oa_information_initialization')
     def test_temp_process_audit_10(self):
         self.mylogger.info("*******融信签发，制单通过，测试开始********")
         lg = LoginPage(self.driver)
