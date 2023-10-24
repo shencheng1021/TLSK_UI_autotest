@@ -39,7 +39,7 @@ class ExtPage(BasePage):
             self.goto_url('http://172.24.100.75:10006/#/market/productCommon/index?proType=extSupply')
             self.click(ExtPage.apply_now_button_loc)
         except Exception as e:
-            log.logger.exception("点击E信通产品详情页面立即申请按钮失败")
+            log.logger.exception("点击E信通产品详情页面立即申请按钮失败",exc_info=True)
             raise
         else:
             log.logger.info("点击E信通产品详情页面立即申请按钮成功")
@@ -51,7 +51,7 @@ class ExtPage(BasePage):
             self.goto_url('http://172.24.100.75:10006/#/market/productCommon/index?proType=extSupply')
             self.click(ExtPage.apply_now_button_loc)
         except Exception as e:
-            log.logger.exception("点击E信通产品详情页面立即申请按钮失败")
+            log.logger.exception("点击E信通产品详情页面立即申请按钮失败",exc_info=True)
             raise
         else:
             log.logger.info("点击E信通产品详情页面立即申请按钮成功")
@@ -62,7 +62,7 @@ class ExtPage(BasePage):
             value=self.is_visible_text(ExtPage.not_login_warn_loc)
             # return self.is_visible_text(ExtPage.not_login_warn_loc)
         except Exception:
-            log.logger.exception("未检测到提示未登录的弹出窗")
+            log.logger.exception("未检测到提示未登录的弹出窗",exc_info=True)
             raise
         else:
             log.logger.info("检查点打印："+str(value))
@@ -74,7 +74,7 @@ class ExtPage(BasePage):
             value=self.is_visible_text(ExtPage.license_agreement_loc)
             #return self.is_visible_text(ExtPage.license_agreement_loc)
         except Exception:
-            log.logger.exception("未检测到数据授权协议弹窗")
+            log.logger.exception("未检测到数据授权协议弹窗",exc_info=True)
             raise
         else:
             log.logger.info("检查点打印："+str(value))
@@ -87,7 +87,7 @@ class ExtPage(BasePage):
             value=self.is_visible_text(ExtPage.not_auth_warn_loc)
             #return self.is_visible_text(ExtPage.not_auth_warn_loc)
         except Exception:
-            log.logger.exception('未检测到未实名认证提示框')
+            log.logger.exception('未检测到未实名认证提示框',exc_info=True)
             raise
         else:
             log.logger.info('检查点打印：'+str(value))

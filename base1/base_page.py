@@ -27,7 +27,7 @@ class BasePage:
         try:
             WebDriverWait(self.driver,10).until(EC.presence_of_element_located(loc))
         except:
-            log.logger.exception("页面中未能找到 %s 元素" % str(loc))
+            log.logger.exception("页面中未能找到 %s 元素" % str(loc),exc_info=True)
             raise
         else:
             log.logger.info("成功定位 %s 元素" % str(loc))
@@ -37,7 +37,7 @@ class BasePage:
         try:
             element=WebDriverWait(self.driver,10).until(EC.element_to_be_clickable(self.locator_element(loc)))
         except:
-            log.logger.exception(str(loc)+"元素不可点击")
+            log.logger.exception(str(loc)+"元素不可点击",exc_info=True)
             #print(str(loc)+"元素不可点击")
             raise
         else:
@@ -49,7 +49,7 @@ class BasePage:
         try:
             self.locator_element(loc).send_keys(key)
         except Exception:
-            log.logger.exception(str(loc)+"元素输入框，无法输入值")
+            log.logger.exception(str(loc)+"元素输入框，无法输入值",exc_info=True)
             raise
         else:
             log.logger.info("[%s]元素输入框，输入值[%s]" % (str(loc),key))
@@ -69,7 +69,7 @@ class BasePage:
             value=self.locator_element(loc).text
             # return self.locator_element(loc).text
         except Exception:
-            log.logger.exception("[%s]获取文本失败")
+            log.logger.exception("[%s]获取文本失败",exc_info=True)
             raise
         else:
             log.logger.info("[%s]获取文本成功，文本值为[%s]" % (str(loc),value))
@@ -119,7 +119,7 @@ class BasePage:
         try:
             value=WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc)).text
         except Exception:
-            log.logger.exception('[%s]元素不可见' % str(loc))
+            log.logger.exception('[%s]元素不可见' % str(loc),exc_info=True)
         else:
             log.logger.info('[%s]元素可见并返回文本[%s]' % (str(loc),value))
             return value
@@ -129,7 +129,7 @@ class BasePage:
         try:
             WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc))
         except TimeoutException:
-            log.logger.exception('等待[%s]元素出现失败' % str(loc))
+            log.logger.exception('等待[%s]元素出现失败' % str(loc),exc_info=True)
             return False
         else:
             log.logger.info('等待[%s]元素出现成功' % str(loc))
@@ -140,7 +140,7 @@ class BasePage:
         try:
             WebDriverWait(self.driver,timeout).until_not(EC.visibility_of_element_located(loc))
         except TimeoutException:
-            log.logger.exception('等待[%s]元素消失失败' % str(loc))
+            log.logger.exception('等待[%s]元素消失失败' % str(loc),exc_info=True)
             return False
         else:
             log.logger.info('等待[%s]元素消失成功' % str(loc))
