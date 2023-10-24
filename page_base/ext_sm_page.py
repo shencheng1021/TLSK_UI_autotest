@@ -6,15 +6,16 @@
 @description: E信通供应商管理页面对象层
 @time: 2022/4/13 9:34
 """
+import logging
 import time
-
 from selenium.webdriver.common.by import By
-
 from base1.base_page import BasePage
 import allure
-
+from common.logger_util import Logger
 from common.mysql_util import MysqlConnection
 
+
+log = Logger(__name__, CmdLevel=logging.INFO, FileLevel=logging.INFO)
 
 class ExtSMPage(BasePage):
 
@@ -96,7 +97,7 @@ class ExtSMPage(BasePage):
     @allure.step("单笔新增供应商弹窗:点击确定按钮")
     def alert_confirm_button(self):
         self.click(ExtSMPage.alert_confirm_loc)
-        self.is_not_visible(ExtSMPage.add_supplier_success_tips_loc)
+        self.is_not_visible(ExtSMPage.add_supplier_success_tips_loc,10)
 
     @allure.step("供应商管理列表，输入供应商名称")
     def input_supplier_name(self,key):
@@ -131,6 +132,7 @@ class ExtSMPage(BasePage):
         sql="SELECT count(*),create_time FROM tjf_user01.t_core_enterprise_supplier " \
             "WHERE core_number = 'TN2022042700010413' AND supplier_number = 'TN2023020600025803'"
         result=MysqlConnection('tjf_user01').QueryAll(sql)
+        log.logger.info("检查点查询结果："+str(result[0]))
         return result[0]
 
     @allure.step("检查供应商列表查询结果")
@@ -140,5 +142,5 @@ class ExtSMPage(BasePage):
             result=self.get_text(ExtSMPage.supplier_list_suppliername_loc)
         elif index == 2 :
             result=self.get_text(ExtSMPage.supplier_list_result_loc)
-
+        log.logger.info("检查点结果打印：" + str(result[0]))
         return result

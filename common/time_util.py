@@ -8,15 +8,11 @@
 """
 import time
 
+#获取格式化后的当前日期
+strdate=time.strftime("%Y%m%d",time.localtime(time.time()))
 
-class TimeUtil:
-
-    def strtime(self):
-        nowtime=time.strftime("%Y%m%d",time.localtime(time.time()))
-        return nowtime
+#获取格式化后的当前时间
+strtime=time.strftime("%Y%m%d%H%M%S",time.localtime(time.time()))
 
 
-if __name__ == '__main__':
-    tt=TimeUtil().strtime()
-    print(time.localtime(time.time()))
-    print(tt)
+

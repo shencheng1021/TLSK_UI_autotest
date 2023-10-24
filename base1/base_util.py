@@ -6,6 +6,7 @@
 @description: test
 @time: 2022/4/13 9:34
 """
+import logging
 import time
 import unittest
 from selenium import webdriver
@@ -13,10 +14,10 @@ from selenium import webdriver
 from common.logger_util import Logger
 
 
+log = Logger(__name__, CmdLevel=logging.INFO, FileLevel=logging.INFO)
 
 class BaseUtil:
 
-    mylogger = Logger(logger='TestMyLog').getlog()
 
     def setup_method(self) -> None:
         global driver
@@ -25,7 +26,9 @@ class BaseUtil:
         self.driver.implicitly_wait(10)
         self.driver.get('http://172.24.100.75:10006/#/login')
         self.driver.maximize_window()
+        log.logger.info('************************starting run test cases************************')
 
     def teardown_method(self) -> None:
         time.sleep(5)
         self.driver.quit()
+        log.logger.info('************************test case run completed************************')

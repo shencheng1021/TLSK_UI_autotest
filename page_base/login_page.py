@@ -6,14 +6,15 @@
 @description: test
 @time: 2022/4/13 9:34
 """
+import logging
 import time
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
-
 from base1.base_page import BasePage
+from common.logger_util import Logger
+
+log=Logger(__name__,CmdLevel=logging.INFO, FileLevel=logging.INFO)
 
 class LoginPage(BasePage):
     #定位页面元素
@@ -53,6 +54,7 @@ class LoginPage(BasePage):
             pass
 
     def login_success_eshop(self,id,username,password):
+        log.logger.info('**********执行登录动作开始**********')
         self.goto_iframe(id)
         time.sleep(1)
         self.click(LoginPage.slmode_loc)
@@ -62,9 +64,8 @@ class LoginPage(BasePage):
         self.click(LoginPage.loginbutton_loc)
         self.quit_iframe()
         self.is_visible(LoginPage.login_success_tips_loc)
-        self.is_not_visible(LoginPage.login_success_tips_loc)
-
-
+        #self.is_not_visible(LoginPage.login_success_tips_loc,3)
+        log.logger.info('**********执行登录动作结束**********')
 
     def goto_merchants_center(self):
         try:
