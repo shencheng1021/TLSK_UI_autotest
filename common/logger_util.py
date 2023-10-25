@@ -27,7 +27,7 @@ class Logger(object):
         self.logger.setLevel(logging.DEBUG)
 
         # 创建一个handler，用于写入日志文件
-        rq = time.strftime('%Y%m%d%H%M', time.localtime(time.time()))
+        rq = time.strftime('%Y%m%d%H', time.localtime(time.time()))
         log_path = os.path.abspath(os.path.dirname(__file__)).split('common')[0] + 'logs/'
         log_name = log_path + rq + '.log'  # 文件名
         # 将日志写入磁盘

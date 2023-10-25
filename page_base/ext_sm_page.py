@@ -132,7 +132,7 @@ class ExtSMPage(BasePage):
         sql="SELECT count(*),create_time FROM tjf_user01.t_core_enterprise_supplier " \
             "WHERE core_number = 'TN2022042700010413' AND supplier_number = 'TN2023020600025803'"
         result=MysqlConnection('tjf_user01').QueryAll(sql)
-        log.logger.info("检查点查询结果："+str(result[0]))
+        log.logger.info("检查点结果打印："+str(result[0]))
         return result[0]
 
     @allure.step("检查供应商列表查询结果")

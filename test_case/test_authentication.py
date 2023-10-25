@@ -11,6 +11,7 @@ import logging
 import pytest
 
 from base1.base_util import BaseUtil
+from common.assert_util import AssertUtil
 from common.logger_util import Logger
 from page_base.auth_page import AuthBage
 from page_base.login_page import LoginPage
@@ -38,7 +39,8 @@ class TestAuth(BaseUtil):
         ah.auth_source_shop()
         ah.auth_submit('1')
         ah.goto_auth_shop()
-        assert ah.check_point() == "已认证"
+        AssertUtil().assertEqual("已认证",ah.check_point())
+        #assert ah.check_point() == "已认证"
         log.logger.info("***************实名认证测试完成**********************")
 
     @allure.title('认证失败：营业执照号重复认证')
@@ -57,7 +59,8 @@ class TestAuth(BaseUtil):
         ah.auth_contactperson_shop('身份证正面.jpg', '身份证背面.jpg', "17754254414")
         ah.auth_source_shop()
         ah.auth_submit('1')
-        assert ah.check_point_2() == "营业执照号已认证其它企业,请勿重复认证多个企业"
+        AssertUtil().assertEqual("已认证", ah.check_point_2())
+        #assert ah.check_point_2() == "营业执照号已认证其它企业,请勿重复认证多个企业"
         log.logger.info("***************实名认证测试完成**********************")
 
 
