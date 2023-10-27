@@ -46,6 +46,7 @@ class ProcessAuditPage(BasePage):
     @allure.step("进入流程详情页面")
     def goto_process_detail(self):
         self.goto_url('http://172.24.100.75:10006/#/approveProcess')
+        self.is_not_visible(ProcessAuditPage.audit_tips_loc, 5)
 
     @allure.step("点击审核按钮进入流程审核页面")
     def goto_process_audit_page(self):

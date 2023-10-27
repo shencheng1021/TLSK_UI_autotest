@@ -24,7 +24,7 @@ log=Logger(__name__,CmdLevel=logging.INFO, FileLevel=logging.INFO)
 class TestLogin(BaseUtil):
 
     @allure.title('输入手机号与验证码进行登录验证')
-    @pytest.mark.parametrize('index,casename,username,checkcode,result',ExcelUtil().excel_read('login_data'))
+    @pytest.mark.parametrize('index,casename,username,checkcode,expectation',ExcelUtil().excel_read('login_data'))
     def test_login_01(self,index,casename,username,checkcode,expectation):
         log.logger.info('********登录测试开始,输入用户名：'+str(username)+'输入验证码:'+str(checkcode)+'******')
         self.driver.implicitly_wait(10)

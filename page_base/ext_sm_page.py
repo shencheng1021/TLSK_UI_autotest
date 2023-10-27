@@ -142,5 +142,5 @@ class ExtSMPage(BasePage):
             result=self.get_text(ExtSMPage.supplier_list_suppliername_loc)
         elif index == 2 :
             result=self.get_text(ExtSMPage.supplier_list_result_loc)
-        log.logger.info("检查点结果打印：" + str(result[0]))
+        log.logger.info("检查点结果打印：" + str(result))
         return result

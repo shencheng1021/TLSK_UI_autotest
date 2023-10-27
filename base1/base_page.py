@@ -61,9 +61,16 @@ class BasePage:
     def quit_iframe(self):
         self.driver.switch_to.default_content()
 
+    #定义进入指定url的关键字
     def goto_url(self,url):
-        self.driver.get(url)
-
+        try:
+            self.driver.get(url)
+            assert self.get_url() == url
+        except Exception as e:
+            log.logger.exception("打开[%s]链接失败" % url,exc_info=True)
+            raise e
+        else:
+            log.logger.info("打开[%s]链接成功" % url)
     def get_text(self,loc):
         try:
             value=self.locator_element(loc).text
@@ -75,7 +82,7 @@ class BasePage:
             log.logger.info("[%s]获取文本成功，文本值为[%s]" % (str(loc),value))
             return value
 
-
+    #定义下拉列表选择的关键字
     def select_value(self,loc,value):
         s=Select(self.locator_element(loc))
         s.select_by_value(value)
@@ -104,6 +111,10 @@ class BasePage:
     def alert_send_keys(self,key):
         alert = self.driver.switch_to.alert
         alert.send_keys(key)
+
+    #定义获取当前页面url的关键字
+    def get_url(self):
+        return self.driver.current_url
 
     #显示等待
     #定义判断某个元素是否被加到了 dom 树里
