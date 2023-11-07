@@ -54,6 +54,7 @@ driver.find_element(By.XPATH, "//span[@class='el-checkbox__inner']").click()
 driver.find_element(By.XPATH, "//div[@class='el-tabs__content']/button").click()
 driver.switch_to.default_content()
 WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='el-dropdown']/div")))
+print(driver.current_url)
 #
 #E信通供应商融信签发
 # driver.get('http://172.24.100.75:10006/#/approveProcess')
@@ -81,18 +82,19 @@ WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@
 
 
 #实名认证
-driver.find_element(By.XPATH,"//div[@class='tag-inside']/ul[7]/li").click()
-
-driver.find_element(By.XPATH,"//div[contains(text(),'企业信息管理')]").click()
-driver.find_element(By.XPATH,"//span[contains(text(),'修改实名认证信息')]").click()
-try:
-    WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, "//div[@class='busiLice-list']/div/div/div/input")))
-    print("元素存在")
-    driver.find_element(By.XPATH, "//div[@class='busiLice-list']/div/div/div/input").send_keys(
-        filepath + '/data/营业执照.jpg')
-except:
-    print("元素不存在")
+# driver.find_element(By.XPATH,"//div[@class='tag-inside']/ul[7]/li").click()
+#
+# driver.find_element(By.XPATH,"//div[contains(text(),'企业信息管理')]").click()
+# driver.find_element(By.XPATH,"//span[contains(text(),'修改实名认证信息')]").click()
+# driver.current_url
+# try:
+#     WebDriverWait(driver, 10).until(
+#         EC.presence_of_element_located((By.XPATH, "//div[@class='busiLice-list']/div/div/div/input")))
+#     print("元素存在")
+#     driver.find_element(By.XPATH, "//div[@class='busiLice-list']/div/div/div/input").send_keys(
+#         filepath + '/data/营业执照.jpg')
+# except:
+#     print("元素不存在")
 #driver.find_element(By.XPATH,"//div[@class='busiLice-list']/div/div/div/input").send_keys(filepath+'/data/营业执照.jpg')
                              #//div[@class='busiLice-list']/div/div/div/input
 
