@@ -1,0 +1,30 @@
+2023-10-24 16:23:30,151 - base1.base_util - INFO - ************************starting run test cases************************
+2023-10-24 16:23:30,213 - test_extdetails - INFO - ********新增供应商,测试开始**********
+2023-10-24 16:23:31,272 - base1.base_page - INFO - 成功定位 ('id', 'tab-second') 元素
+2023-10-24 16:23:31,298 - base1.base_page - INFO - 成功点击('id', 'tab-second')元素
+2023-10-24 16:23:31,382 - base1.base_page - INFO - 成功定位 ('xpath', "//input[@placeholder='请输入手机号码']") 元素
+2023-10-24 16:23:31,480 - base1.base_page - INFO - [('xpath', "//input[@placeholder='请输入手机号码']")]元素输入框，输入值[17754124411]
+2023-10-24 16:23:31,491 - base1.base_page - INFO - 成功定位 ('xpath', "//div[@class='c-phonecode-input']/div/input") 元素
+2023-10-24 16:23:31,560 - base1.base_page - INFO - [('xpath', "//div[@class='c-phonecode-input']/div/input")]元素输入框，输入值[230516]
+2023-10-24 16:23:31,571 - base1.base_page - INFO - 成功定位 ('xpath', "//span[@class='el-checkbox__inner']") 元素
+2023-10-24 16:23:31,598 - base1.base_page - INFO - 成功点击('xpath', "//span[@class='el-checkbox__inner']")元素
+2023-10-24 16:23:31,664 - base1.base_page - INFO - 成功定位 ('xpath', "//div[@class='el-tabs__content']/button") 元素
+2023-10-24 16:23:31,688 - base1.base_page - INFO - 成功点击('xpath', "//div[@class='el-tabs__content']/button")元素
+2023-10-24 16:23:33,600 - base1.base_page - INFO - 等待[('xpath', "//p[contains(text(),'登录成功')]")]元素出现成功
+2023-10-24 16:23:34,582 - base1.base_page - INFO - 成功定位 ('xpath', "//div[contains(text(),'供应商管理')]") 元素
+2023-10-24 16:23:34,985 - base1.base_page - INFO - 成功点击('xpath', "//div[contains(text(),'供应商管理')]")元素
+2023-10-24 16:23:35,033 - base1.base_page - INFO - 成功定位 ('xpath', "//div[@class='container-m']/header/form/div[3]/button[1]") 元素
+2023-10-24 16:23:35,057 - base1.base_page - INFO - 成功点击('xpath', "//div[@class='container-m']/header/form/div[3]/button[1]")元素
+2023-10-24 16:23:35,185 - base1.base_page - INFO - 成功定位 ('xpath', "//div[@class='el-dialog__body']/header/form/div/div/input") 元素
+2023-10-24 16:23:35,291 - base1.base_page - INFO - [('xpath', "//div[@class='el-dialog__body']/header/form/div/div/input")]元素输入框，输入值[重庆帆舟运输有限公司]
+2023-10-24 16:23:35,305 - base1.base_page - INFO - 成功定位 ('xpath', "//div[@class='el-dialog__body']/header/form/div[2]/button") 元素
+2023-10-24 16:23:35,340 - base1.base_page - INFO - 成功点击('xpath', "//div[@class='el-dialog__body']/header/form/div[2]/button")元素
+2023-10-24 16:23:38,471 - base1.base_page - INFO - 成功定位 ('xpath', '//*[@id="app"]/div[2]/div[1]/div/div[2]/div/div/div[4]/div/div/div[2]/main/div[1]/div[4]/div[2]/table/tbody/tr/td[1]/div/label/span/span') 元素
+2023-10-24 16:23:38,496 - base1.base_page - INFO - 成功点击('xpath', '//*[@id="app"]/div[2]/div[1]/div/div[2]/div/div/div[4]/div/div/div[2]/main/div[1]/div[4]/div[2]/table/tbody/tr/td[1]/div/label/span/span')元素
+2023-10-24 16:23:38,539 - base1.base_page - INFO - 成功定位 ('xpath', "//div[@class='table-list']/div[4]/div/div/div[3]/span/button[1]") 元素
+2023-10-24 16:23:38,560 - base1.base_page - INFO - 成功点击('xpath', "//div[@class='table-list']/div[4]/div/div/div[3]/span/button[1]")元素
+2023-10-24 16:23:38,889 - base1.base_page - INFO - 等待[('xpath', "//p[contains(text(),'新增成功！')]")]元素消失成功
+2023-10-24 16:23:38,909 - page_base.ext_sm_page - INFO - 检查点查询结果：(1, datetime.datetime(2023, 10, 24, 16, 23, 38))
+2023-10-24 16:23:38,909 - test_extdetails - INFO - 检查点打印：(1, datetime.datetime(2023, 10, 24, 16, 23, 38))
+2023-10-24 16:23:38,909 - test_extdetails - INFO - ********新增供应商,测试结束**********
+2023-10-24 16:23:46,071 - base1.base_util - INFO - ************************test case run completed************************
