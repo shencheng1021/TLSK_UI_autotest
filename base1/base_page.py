@@ -71,6 +71,7 @@ class BasePage:
             raise e
         else:
             log.logger.info("打开[%s]链接成功" % url)
+
     def get_text(self,loc):
         try:
             value=self.locator_element(loc).text
