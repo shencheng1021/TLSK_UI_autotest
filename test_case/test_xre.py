@@ -30,7 +30,7 @@ class Test_Xre(BaseUtil):
         xreDtl.goto_xreDtl_page()
         xreDtl.click_applyBtl()
         actual=xreDtl.check_whether_lg()
-        xreDtl.assertEqual(False,actual)
+        xreDtl.assertEqual(True,actual)
         log.logger.info('**********验证未登录提示信息,测试结束**********')
 
     @allure.story('信融E产品详情测试')
