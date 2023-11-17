@@ -8,7 +8,6 @@
 """
 import logging
 
-from base1.base_page import BasePage
 from common.logger_util import Logger
 
 log = Logger(__name__, CmdLevel=logging.INFO, FileLevel=logging.INFO)
