@@ -10,7 +10,6 @@ import os
 
 import openpyxl
 
-
 class ExcelUtil:
 
     def dirname(self):
@@ -32,7 +31,6 @@ class ExcelUtil:
                 else:
                     col_list.append(datavalue)
             row_list.append(col_list)
-
         return row_list
 
 if __name__ == '__main__':

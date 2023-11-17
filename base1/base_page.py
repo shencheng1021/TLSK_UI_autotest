@@ -10,6 +10,7 @@ import logging
 import os
 import time
 
+import allure
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
@@ -28,6 +29,7 @@ class BasePage:
             WebDriverWait(self.driver,10).until(EC.presence_of_element_located(loc))
         except:
             log.logger.exception("页面中未能找到 %s 元素" % str(loc),exc_info=True)
+            self.get_screenshot_as_png()
             raise
         else:
             log.logger.info("成功定位 %s 元素" % str(loc))
@@ -158,6 +160,29 @@ class BasePage:
             log.logger.info('等待[%s]元素消失成功' % str(loc))
             return True
 
+    #失败用例截图
+    def get_screenshot_as_png(self):
+        img=self.driver.get_screenshot_as_png()
+        allure.attach(img, '失败截图', allure.attachment_type.PNG)
+
+    def assertEqual(self,expectation,actual):
+        try:
+            assert expectation == actual
+        except AssertionError as e:
+            self.get_screenshot_as_png()
+            log.logger.error("断言失败！预期结果：%s，实际结果：%s" % (expectation,actual),exc_info=True)
+            raise e
+        else:
+            log.logger.info("断言成功！预期结果：%s，实际结果：%s" % (expectation,actual))
+
+    def assertIn(self,expectation,actual):
+        try:
+            assert expectation in actual
+        except AssertionError as e:
+            log.logger.error("断言失败！预期结果：%s not in 实际结果：%s" % (expectation,actual),exc_info=True)
+            raise e
+        else:
+            log.logger.info("断言成功！预期结果：%s in 实际结果：%s" % (expectation,actual))
 
 
 

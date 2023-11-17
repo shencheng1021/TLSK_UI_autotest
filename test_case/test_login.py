@@ -33,18 +33,17 @@ class TestLogin(BaseUtil):
 
         if index == 1:
             lp.goto_merchants_center()
-            AssertUtil().assertEqual(expectation,lp.check_point_shop())
+            lp.assertEqual(expectation,lp.check_point_shop())
             #assert  lp.check_point_shop() == expectation
         elif index == 2 or index == 3 or index == 4:
-            AssertUtil().assertEqual(expectation, lp.loginfail_check_shop(lp.username_failwarn_loc))
+            lp.assertEqual(expectation, lp.loginfail_check_shop(lp.username_failwarn_loc))
             #assert lp.loginfail_check_shop(lp.username_failwarn_loc) == expectation
         elif index == 5:
-            AssertUtil().assertEqual(expectation,lp.loginfail_check_shop(lp.checkcode_null_loc))
+            lp.assertEqual(expectation,lp.loginfail_check_shop(lp.checkcode_null_loc))
             #assert lp.loginfail_check_shop(lp.checkcode_null_loc) == expectation
         else:
-            AssertUtil().assertEqual(expectation,lp.loginfail_check_shop(lp.checkcode_fail_loc))
+            lp.assertEqual(expectation,lp.loginfail_check_shop(lp.checkcode_fail_loc))
             #assert lp.loginfail_check_shop(lp.checkcode_fail_loc) == expectation
-
         log.logger.info('********登录测试结束，测试结果：********')
 
 

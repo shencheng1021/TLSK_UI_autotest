@@ -30,7 +30,7 @@ class TestFkdl(BaseUtil):
         fdp=FkdlDtlPage(self.driver)
         fdp.goto_fkdlDtlPage()
         actual=fdp.check_applybtl_success()
-        AssertUtil().assertEqual("保理E",actual)
+        fdp.assertEqual("保理E",actual)
         log.logger.info('***********执行用例：' + sys._getframe().f_code.co_name + '结束****************')
 
     @allure.title("点击立即申请，登录账号未实名认证")
@@ -41,7 +41,7 @@ class TestFkdl(BaseUtil):
         fdp = FkdlDtlPage(self.driver)
         fdp.goto_fkdlDtlPage()
         actual=fdp.check_not_auth_warn()
-        AssertUtil().assertEqual("请先完成实名认证", actual)
+        fdp.assertEqual("请先完成实名认证", actual)
         log.logger.info('***********执行用例：' + sys._getframe().f_code.co_name + '结束****************')
 
     @allure.title("点击立即申请，未进行登录")
@@ -50,7 +50,7 @@ class TestFkdl(BaseUtil):
         fdp = FkdlDtlPage(self.driver)
         fdp.goto_fkdlDtlPage()
         actual = fdp.cheak_not_login_warn()
-        AssertUtil().assertEqual("系统检测到您尚未登录，或者登录已过期，请先登录以继续操作", actual)
+        fdp.assertEqual("系统检测到您尚未登录，或者登录已过期，请先登录以继续操作", actual)
         log.logger.info('***********执行用例：' + sys._getframe().f_code.co_name + '结束****************')
 
     @allure.title("点击立即申请，登录账号未同意数据授权")
@@ -61,7 +61,7 @@ class TestFkdl(BaseUtil):
         fdp = FkdlDtlPage(self.driver)
         fdp.goto_fkdlDtlPage()
         actual = fdp.check_license_agreement()
-        AssertUtil().assertEqual("保理E数据授权协议", actual)
+        fdp.assertEqual("保理E数据授权协议", actual)
         log.logger.info('***********执行用例：' + sys._getframe().f_code.co_name + '结束****************')
 
 if __name__ == '__main__':

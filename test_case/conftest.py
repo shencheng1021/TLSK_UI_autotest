@@ -7,10 +7,14 @@
 @time: 2022/4/13 9:34
 """
 import logging
+import os
 import time
 
 import pytest
+from selenium import webdriver
 
+from base1.base_page import BasePage
+from base1.base_util import BaseUtil
 from common.logger_util import Logger
 from common.mysql_util import MysqlConnection
 import allure
@@ -54,18 +58,41 @@ def oa_information_initialization():
 
 
 
-if __name__ == '__main__':
-    oa_information_initialization()
+# driver = None
+#
+# @pytest.mark.hookwrapper
+# def pytest_runtest_makereport(item, call):
+#     outcome = yield
+#     res = outcome.get_result()
+#     if res.when == "call" and res.failed:
+#         mode = "a" if os.path.exists("failures") else "w"
+#         with open("failures", mode) as f:
+#             # let's also access a fixture for the fun of it
+#             if "tmpdir" in item.fixturenames:
+#                 extra = " (%s)" % item.funcargs["tmpdir"]
+#             else:
+#                 extra = ""
+#             f.write(res.nodeid + extra + "\n")
+#         # 添加allure报告截图
+#         if hasattr(driver, "get_screenshot_as_png"):
+#             with allure.step('添加失败截图...'):
+#                 allure.attach(driver.get_screenshot_as_png(), "失败截图", allure.attachment_type.PNG)
+#
+#
+# @pytest.fixture(scope='session')
+# def browser():
+#     global driver
+#     if driver is None:
+#         # chromedriver 路径已添加到系统环境变量中，所以此处可省略chromedriver路径参数
+#         driver = webdriver.Chrome()
+#         driver.implicitly_wait(10)
+#         driver.get('http://172.24.100.75:10006/#/login')
+#         driver.maximize_window()
+#         log.logger.info('************************starting run test cases************************')
+#     yield driver
+#     driver.quit()
+#     log.logger.info('************************test case run completed************************')
 
 
 
-
-
-
-
-
-@pytest.fixture()
-def setup_func(request):
-    request.info("测试的撒发生")
-
-
+#if __name__ == '__main__':

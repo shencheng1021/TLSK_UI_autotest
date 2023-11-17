@@ -38,7 +38,7 @@ class TestExtdetails(BaseUtil):
         EP=ExtPage(self.driver)
         EP.goto_ext_product_lg_s()
         actual=EP.check_pointt_auth_status()
-        AssertUtil().assertEqual("请先完成实名认证",actual)
+        EP.assertEqual("请先完成实名认证",actual)
         #assert actual == "请先完成实名认证"
         log.logger.info("****************E信通二级页面，校验企业是否实名认证，测试结束****************")
 
@@ -48,7 +48,10 @@ class TestExtdetails(BaseUtil):
         EP=ExtPage(self.driver)
         EP.goto_ext_product_lg_f()
         actual=EP.check_point_not_login()
-        AssertUtil().assertEqual("系统检测到您尚未登录，或者登录已过期，请先登录以继续操作", actual)
+        EP.assertEqual(
+
+
+            "系统检测到您尚未登录，或者登录已过期，请先登录以继续操作", actual)
         #assert actual == "系统检测到您尚未登录，或者登录已过期，请先登录以继续操作"
         log.logger.info("****************E信通二级页面，校验是否登录，测试结束****************")
 
@@ -60,7 +63,7 @@ class TestExtdetails(BaseUtil):
         EP = ExtPage(self.driver)
         EP.goto_ext_product_lg_s()
         actual=EP.check_point_license_agreement()
-        AssertUtil().assertEqual("E信通数据授权协议", actual)
+        EP.assertEqual("E信通数据授权协议", actual)
         #assert actual == "E信通数据授权协议"
         log.logger.info("****************E信通二级页面，校验授权协议弹出窗，测试结束****************")
 
@@ -74,7 +77,7 @@ class TestExtdetails(BaseUtil):
         Ext_sm=ExtSMPage(self.driver)
         actual=Ext_sm.check_supplier_manage()
         #log.logger.info("检点点打印："+actual)
-        AssertUtil().assertEqual("E信通", actual)
+        EP.assertEqual("E信通", actual)
         #assert actual == "E信通"
         log.logger.info("**********核心企业成功进入E信通产品操作页面,测试结束*********")
 
@@ -93,8 +96,8 @@ class TestExtdetails(BaseUtil):
         ext_sm.select_supplier_name()
         ext_sm.alert_confirm_button()
         actual=ext_sm.check_add_success_or_not()
-        AssertUtil().assertEqual(1, actual[0])
-        AssertUtil().assertEqual(actual[1].strftime("%Y%m%d"),time.strftime("%Y%m%d",time.localtime(time.time())))
+        ext_sm.assertEqual(1, actual[0])
+        ext_sm.assertEqual(actual[1].strftime("%Y%m%d"),time.strftime("%Y%m%d",time.localtime(time.time())))
         #assert actual[0] == 1
         #assert actual[1].strftime("%Y%m%d") == time.strftime("%Y%m%d",time.localtime(time.time()))
         log.logger.info('********新增供应商,测试结束**********')
@@ -110,7 +113,7 @@ class TestExtdetails(BaseUtil):
         ext_sm.del_alert_confirm()
         actual = ext_sm.check_add_success_or_not()
         #log.logger.info("检查点打印："+str(actual))
-        AssertUtil().assertEqual(0, actual[0])
+        ext_sm.assertEqual(0, actual[0])
         #assert actual[0] == 0
 
     @allure.title("查询存在的供应商")
@@ -122,7 +125,7 @@ class TestExtdetails(BaseUtil):
         ext_sm.selct_supplier_shop('北京的公司')
         actual = ext_sm.check_select_result(1)
         #log.logger.info("检查点打印："+str(actual))
-        AssertUtil().assertEqual('北京的公司', actual)
+        ext_sm.assertEqual('北京的公司', actual)
         #assert actual == '北京的公司'
 
     @allure.title("查询不存在的供应商")
@@ -134,7 +137,7 @@ class TestExtdetails(BaseUtil):
         ext_sm.selct_supplier_shop('北京的公司1')
         actual = ext_sm.check_select_result(2)
         #log.logger.info("检查点打印：" + str(actual))
-        AssertUtil().assertEqual('暂无数据', actual)
+        ext_sm.assertEqual('暂无数据', actual)
         #assert actual == '暂无数据'
 
     @allure.title("签发融信成功")
@@ -152,7 +155,7 @@ class TestExtdetails(BaseUtil):
         sg.click_confirm_button()
         actual=sg.check_sign_success()
         #log.logger.info("检查点打印：" + str(actual))
-        AssertUtil().assertEqual('新增成功', actual)
+        sg.assertEqual('新增成功', actual)
         #assert actual == '新增成功'
         log.logger.info("*******融信签发，签发成功，测试结束********")
 
@@ -167,7 +170,7 @@ class TestExtdetails(BaseUtil):
         pap.audit_pass_shop()
         actual=pap.check_audit_result()
         #log.logger.info("检查点打印：" + str(actual))
-        AssertUtil().assertEqual('审核成功!', actual)
+        pap.assertEqual('审核成功!', actual)
         #assert actual == '审核成功!'
         log.logger.info("*******融信签发，制单通过，测试结束********")
 
@@ -182,7 +185,7 @@ class TestExtdetails(BaseUtil):
         pap.click_pass_button()
         actual = pap.check_audit_result()
         #log.logger.info("检查点打印：" + str(actual))
-        AssertUtil().assertEqual('审核成功!', actual)
+        pap.assertEqual('审核成功!', actual)
         #assert actual == '审核成功!'
         log.logger.info("*******融信签发，初审审核通过，测试结束********")
 
@@ -197,7 +200,7 @@ class TestExtdetails(BaseUtil):
         pap.click_pass_button()
         actual = pap.check_audit_result()
         #log.logger.info("检查点打印：" + str(actual))
-        AssertUtil().assertEqual('审核成功!', actual)
+        pap.assertEqual('审核成功!', actual)
         #assert actual == '审核成功!'
         log.logger.info("*******融信签发，复核审核通过，测试结束********")
 
@@ -212,7 +215,7 @@ class TestExtdetails(BaseUtil):
         pap.click_pass_button()
         actual = pap.check_audit_result()
         #log.logger.info("检查点打印：" + str(actual))
-        AssertUtil().assertEqual('审核成功!', actual)
+        pap.assertEqual('审核成功!', actual)
         #assert actual == '审核成功!'
         log.logger.info("*******融信签发，终审审核通过，测试结束********")
 
@@ -226,7 +229,7 @@ class TestExtdetails(BaseUtil):
         esp.signfor_shop()
         actual=esp.check_signfor_status()
         #log.logger.info("检查点打印：" + str(actual))
-        AssertUtil().assertEqual('签收成功,是否立即发起融资申请', actual)
+        esp.assertEqual('签收成功,是否立即发起融资申请', actual)
         #assert actual == '签收成功,是否立即发起融资申请'
         log.logger.info("*******融信签收，签收通过，测试结束********")
 
@@ -240,7 +243,7 @@ class TestExtdetails(BaseUtil):
         esp.financing_apply_shop()
         actual=esp.check_apply_result_tips()
         #log.logger.info("检查点打印：" + str(actual))
-        AssertUtil().assertEqual('融资基础信息您已确认成功，请点击下一步上传融资材料！', actual)
+        esp.assertEqual('融资基础信息您已确认成功，请点击下一步上传融资材料！', actual)
         #assert actual == '融资基础信息您已确认成功，请点击下一步上传融资材料！'
         log.logger.info("*******融资申请，申请成功，测试结束********")
 

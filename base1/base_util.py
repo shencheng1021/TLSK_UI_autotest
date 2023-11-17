@@ -29,6 +29,5 @@ class BaseUtil:
         log.logger.info('************************starting run test cases************************')
 
     def teardown_method(self) -> None:
-        time.sleep(5)
         self.driver.quit()
         log.logger.info('************************test case run completed************************')
