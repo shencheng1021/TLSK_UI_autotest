@@ -90,8 +90,8 @@ class BasePage:
         s=Select(self.locator_element(loc))
         s.select_by_value(value)
 
-    def upload_file(self,loc,filename):
-        relativepath=os.path.dirname(__file__).split("base1")[0]+'/data/'
+    def upload_file(self,loc,filename,relativepath):
+        #relativepath=os.path.dirname(__file__).split("base1")[0]+'/data/'
         self.send_keys(loc,relativepath+filename)
         time.sleep(3)
 
@@ -118,6 +118,10 @@ class BasePage:
     #定义获取当前页面url的关键字
     def get_url(self):
         return self.driver.current_url
+
+    #清除当前文本内容
+    def clear_text(self,loc):
+        self.locator_element(loc).clear()
 
     #显示等待
     #定义判断某个元素是否被加到了 dom 树里

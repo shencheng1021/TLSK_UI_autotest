@@ -9,7 +9,7 @@
 import time
 from selenium.webdriver.common.by import By
 from base1.base_page import BasePage
-
+from common import dir_util
 
 
 class AuthBage(BasePage):
@@ -76,7 +76,7 @@ class AuthBage(BasePage):
     #定位图片上传是否成功提示框
     upload_picture_tips_loc=(By.XPATH,"//p[@class='el-message__content']")
 
-
+    relativepath=dir_util.testcase_dir
 
 
     #定义完善企业信息
@@ -84,23 +84,23 @@ class AuthBage(BasePage):
         self.click(AuthBage.merchants_center_loc)
         self.click(AuthBage.enterprise_management_loc)
         self.click(AuthBage.update_auth_loc)
-        self.upload_file(AuthBage.business_upload_loc,key)
+        self.upload_file(AuthBage.business_upload_loc,key,self.relativepath)
         self.select_value(AuthBage.province_select_loc,province)
         self.select_value(AuthBage.city_select_loc,city)
         self.select_value(AuthBage.district_select_loc,district)
 
     #定义完善法人信息
     def auth_lagal_shop(self,idcardfront,idcardbackside,phone):
-        self.upload_file(AuthBage.legal_front_loc,idcardfront)
+        self.upload_file(AuthBage.legal_front_loc,idcardfront,self.relativepath)
         time.sleep(3)
-        self.upload_file(AuthBage.legal_backside_loc,idcardbackside)
+        self.upload_file(AuthBage.legal_backside_loc,idcardbackside,self.relativepath)
         self.send_keys(AuthBage.legal_phone_loc,phone)
 
     #定义联系人信息
     def auth_contactperson_shop(self,idcardfront,idcardbackside,phone):
-        self.upload_file(AuthBage.contactperson_front_loc,idcardfront)
+        self.upload_file(AuthBage.contactperson_front_loc,idcardfront,self.relativepath)
         time.sleep(3)
-        self.upload_file(AuthBage.contactperson_backside_loc,idcardbackside)
+        self.upload_file(AuthBage.contactperson_backside_loc,idcardbackside,self.relativepath)
         self.send_keys(AuthBage.contactperson_phone_loc,phone)
 
     #定义维护客户来源
@@ -133,6 +133,8 @@ class AuthBage(BasePage):
     def check_point_2(self):
         failtips=self.get_text(AuthBage.failtips_loc_)
         return failtips
+
+
 
 
 

@@ -1,2 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Fri Nov 17 13:50:00 CST 2023","Fri Nov 17 13:50:04 CST 2023","4576","test_case","test_xre","Test_Xre","","","验证未登录提示信息",""

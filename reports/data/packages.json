@@ -1,1 +1,1 @@
-{"uid":"83edc06c07f9ae9e47eb6dd1b683e4e2","name":"packages","children":[{"name":"test_case.test_xre","children":[{"name":"验证未登录提示信息","uid":"ea728266e5a47021","parentUid":"149efc9f06bae3e3e569d29aeef2498f","status":"failed","time":{"start":1700200200066,"stop":1700200204642,"duration":4576},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":2,"retriesStatusChange":false,"parameters":[],"tags":[]}],"uid":"test_case.test_xre"}]}
+{"uid":"83edc06c07f9ae9e47eb6dd1b683e4e2","name":"packages","children":[]}

@@ -19,7 +19,7 @@ from common.logger_util import Logger
 from common.mysql_util import MysqlConnection
 import allure
 
-
+from common.yaml_util import YamlUtil
 
 log=Logger(__name__,CmdLevel=logging.INFO, FileLevel=logging.INFO)
 
@@ -55,6 +55,25 @@ def oa_information_initialization():
        ""+date+", '手动补充数据', NOW(), NOW());"
     MysqlConnection('tjf_manage01').Operate(sql)
     log.logger.info('***********初始化关联的OA信息完成************')
+
+@allure.step("初始化企业信息")
+@pytest.fixture(scope='class',autouse=True)
+def business_information():
+    YamlUtil().clean_extract_yaml()
+    log.logger.info('***********清除extract.yaml文件内容完成************')
+    date=time.strftime('%Y%m%d%H%M%S',time.localtime())
+    business_name='测试企业'+date
+    business_code='YYZZ'+date
+    data={'companyName' : business_name,'busiLiceNo':business_code}
+    YamlUtil().write_extract_yaml(data)
+    log.logger.info('***********初始化企业信息完成************')
+
+# @allure.step("清除extract.yaml文件内容")
+# @pytest.fixture(scope='class',autouse=True)
+# def clean_extract():
+#     YamlUtil().clean_extract_yaml()
+#     log.logger.info('***********清除extract.yaml文件内容完成************')
+
 
 
 
@@ -95,4 +114,5 @@ def oa_information_initialization():
 
 
 
-#if __name__ == '__main__':
+if __name__ == '__main__':
+    auth_initialization()

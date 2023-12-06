@@ -20,6 +20,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+from common import dir_util
 from common.mysql_util import MysqlConnection
 
 # sql="SELECT count(*),create_time FROM tjf_user01.t_core_enterprise_supplier " \
@@ -33,28 +34,38 @@ from common.mysql_util import MysqlConnection
 #qqq=time.strftime('%Y%m%d',result[0][0])
 #print(qqq)
 
-
+# print(time.time())
+# print(time.localtime())
+# print(time.localtime(time.time()))
+# date=time.strftime('%Y%m%d%H%M%S',time.localtime())
+# print(date)
 driver = webdriver.Chrome()
 # #
 filepath=os.path.abspath(os.path.dirname(__file__)).split("test_case")[0]
-print(filepath)
-#
+# print(filepath)
+# #
 #
 
 #登录
-driver.get('http://172.24.100.75:10006/#/login')
+driver.get('http://172.24.100.75:10018/#/certification-login?accessToken=1cc4badde891b831341f9cdec5791c5e')
 driver.implicitly_wait(10)
 driver.maximize_window()
-driver.switch_to.frame('child')
-time.sleep(2)
-driver.find_element(By.XPATH,"//*[@id='tab-second']").click()
-driver.find_element(By.XPATH, "//input[@placeholder='请输入手机号码']").send_keys('17754756654')
-driver.find_element(By.XPATH, "//div[@class='c-phonecode-input']/div/input").send_keys('230516')
-driver.find_element(By.XPATH, "//span[@class='el-checkbox__inner']").click()
-driver.find_element(By.XPATH, "//div[@class='el-tabs__content']/button").click()
-driver.switch_to.default_content()
-WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='el-dropdown']/div")))
-print(driver.current_url)
+driver.find_element(By.XPATH,"//span[contains(text(),'修改基础信息')]").click()
+driver.find_element(By.XPATH,"//div[@class='company-base']/form/div[1]/div/div/div[2]/div/div[2]/div/div/input").send_keys(filepath+'/data/营业执照.jpg')
+driver.find_element(By.XPATH,"//div[@class='el-message-box__btns']/button[2]").click()
+driver.find_element(By.XPATH,"//input[@placeholder='省']").click()
+driver.find_element(By.XPATH,"//span[contains(text(),'北京')]").click()
+
+# driver.switch_to.frame('child')
+# time.sleep(2)
+# driver.find_element(By.XPATH,"//*[@id='tab-second']").click()
+# driver.find_element(By.XPATH, "//input[@placeholder='请输入手机号码']").send_keys('17754756654')
+# driver.find_element(By.XPATH, "//div[@class='c-phonecode-input']/div/input").clear()
+# driver.find_element(By.XPATH, "//span[@class='el-checkbox__inner']").click()
+# driver.find_element(By.XPATH, "//div[@class='el-tabs__content']/button").click()
+# driver.switch_to.default_content()
+# WebDriverWait(driver,10).until(EC.presence_of_element_located((By.XPATH,"//div[@class='el-dropdown']/div")))
+# print(driver.current_url)
 #
 #E信通供应商融信签发
 # driver.get('http://172.24.100.75:10006/#/approveProcess')

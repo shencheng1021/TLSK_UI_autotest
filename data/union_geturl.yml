@@ -1,0 +1,14 @@
+-
+  name: 获取银联商户合作资料收集页面url
+  request:
+    method: post
+    url: http://172.24.100.74:9921/pki/identifyApplyUrl/172.24.100.75?port=50006
+    headers:
+      Content-Type: application/json
+    data:
+      busiLiceNo: 9142010071790519XW
+      companyName: 中建商品混凝土有限公司武昌供应站
+      phone: 17754754238
+      userName: 测试人员018
+  assert: SUCCESS
+

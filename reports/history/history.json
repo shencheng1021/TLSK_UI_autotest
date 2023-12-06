@@ -1,1 +1,1 @@
-{"f9463edd51e19a41612e107d29123462":{"statistic":{"failed":1,"broken":0,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"ea728266e5a47021","status":"failed","statusDetails":"AssertionError","time":{"start":1700200200066,"stop":1700200204642,"duration":4576}}]}}
+{}
