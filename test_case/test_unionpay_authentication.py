@@ -44,7 +44,7 @@ class TestUnionpayAuth(BaseUtil):
         actual=UIP.check_data_description_alert()
         UIP.assertEqual('上传资料说明',actual)
 
-    @allure.title('完善商户合作资料信息')
+    @allure.title('完善商户合作资料信息，并提交')
     def test_redact_information(self):
         url = YamlUtil().read_extract_yaml('identifyPage')
         business_name=YamlUtil().read_extract_yaml('companyName')

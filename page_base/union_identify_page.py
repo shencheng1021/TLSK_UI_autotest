@@ -148,12 +148,14 @@ class UnionIdentifyPage(BasePage):
 
     @allure.step('输入企业相关我信息')
     def input_business_information(self,filename,business_name):
-        self.click(self.understand_button_loc)
+        try:
+            self.click(self.understand_button_loc)
+        except:
+            pass
         self.click(self.update_button_loc)
         self.upload_file(self.business_license_upload_loc,filename,self.relativepath)
         self.click(self.alert_button_loc)
-        self.clear_text(self.business_name_loc)
-        self.send_keys(self.business_name_loc,business_name)
+        self.clear_send_keys(self.business_name_loc,business_name)
         self.click(self.province_pulldown_loc)
         self.click(self.province_input_loc)
         self.click(self.city_pulldown_loc)
@@ -166,14 +168,14 @@ class UnionIdentifyPage(BasePage):
         self.upload_file(self.legal_front_loc,legal_front,self.relativepath)
         self.upload_file(self.legal_back_loc, legal_back,self.relativepath)
         time.sleep(3)
-        self.send_keys(self.legal_phone_loc,phone)
+        self.clear_send_keys(self.legal_phone_loc,phone)
 
     @allure.step('输入联系人证件相关信息')
     def input_contact_person_information(self, contact_front, contact_back, phone):
         self.upload_file(self.contact_front_loc,contact_front,self.relativepath)
         self.upload_file(self.contact_back_loc,contact_back,self.relativepath)
         time.sleep(3)
-        self.send_keys(self.contact_phone_loc,phone)
+        self.clear_send_keys(self.contact_phone_loc,phone)
 
     @allure.step('点击企业信息页面下一步操作')
     def click_next_step_button(self):
@@ -182,11 +184,11 @@ class UnionIdentifyPage(BasePage):
     @allure.step('输入银行账户相关信息')
     def input_acc_ifm(self,filename,bank_acc,acc_name,bank_name,banl_address):
         self.upload_file(self.acc_ifm_upload_loc,filename,self.relativepath)
-        self.send_keys(self.bank_acc_input_loc,bank_acc)
-        self.send_keys(self.acc_name_input_loc,acc_name)
+        self.clear_send_keys(self.bank_acc_input_loc,bank_acc)
+        self.clear_send_keys(self.acc_name_input_loc,acc_name)
         self.send_keys(self.bank_name_input_loc,bank_name)
         self.click(self.bank_name_select_loc)
-        self.send_keys(self.banl_address_input_loc,banl_address)
+        self.clear_send_keys(self.banl_address_input_loc,banl_address)
 
     @allure.step('银行账户信息页面，点击下一步按钮')
     def click_acc_next_step(self):

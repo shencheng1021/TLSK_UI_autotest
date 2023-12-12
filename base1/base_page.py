@@ -46,6 +46,17 @@ class BasePage:
             log.logger.info("成功点击"+str(loc)+"元素")
             element.click()
 
+    # 清除当前文本内容
+    def clear_text(self, loc):
+        log.logger.info("清除元素定位："+str(loc)+"文本内容")
+        try:
+            self.element_to_be_clickable(loc)
+            self.locator_element(loc).clear()
+        except Exception:
+            log.logger.exception("清除文本内容失败",exc_info=True)
+            raise
+        else:
+            log.logger.info("清除文本内容成功")
 
     def send_keys(self,loc,key):
         try:
@@ -55,6 +66,17 @@ class BasePage:
             raise
         else:
             log.logger.info("[%s]元素输入框，输入值[%s]" % (str(loc),key))
+
+    def clear_send_keys(self,loc,key):
+        try:
+            self.clear_text(loc)
+            self.locator_element(loc).send_keys(key)
+        except Exception:
+            log.logger.exception(str(loc)+"元素输入框，无法输入值",exc_info=True)
+            raise
+        else:
+            log.logger.info("[%s]元素输入框，输入值[%s]" % (str(loc),key))
+
     #定义进框架的关键字
     def goto_iframe(self,id):
         self.driver.switch_to.frame(id)
@@ -119,9 +141,6 @@ class BasePage:
     def get_url(self):
         return self.driver.current_url
 
-    #清除当前文本内容
-    def clear_text(self,loc):
-        self.locator_element(loc).clear()
 
     #显示等待
     #定义判断某个元素是否被加到了 dom 树里
@@ -131,6 +150,15 @@ class BasePage:
     #判断某个元素中是否不存在于dom树或不可见
     def invisibility_of_element_located(self,loc):
         WebDriverWait(self.driver,10).until(EC.invisibility_of_element_located(loc))
+
+    #等待一个元素可操作
+    def element_to_be_clickable(self,loc):
+        try:
+            WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(loc))
+        except Exception:
+            log.logger.exception('[%s]元素不可操作' % str(loc), exc_info=True)
+        else:
+            log.logger.info('[%s]元素可操作' % (str(loc)))
 
     #定义一直等待某元素可见，并返回定位元素中的文本,默认超时10秒的关键字
     def is_visible_text(self,loc):
