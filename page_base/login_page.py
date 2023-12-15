@@ -67,7 +67,7 @@ class LoginPage(BasePage):
         self.click(LoginPage.loginbutton_loc)
         self.quit_iframe()
         self.is_visible(LoginPage.login_success_tips_loc)
-        #self.is_not_visible(LoginPage.login_success_tips_loc,3)
+        self.is_not_visible(LoginPage.login_success_tips_loc,5)
         log.logger.info('**********执行登录动作结束**********')
 
     @allure.step("进入商户中心页面")
