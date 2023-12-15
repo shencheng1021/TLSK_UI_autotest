@@ -8,7 +8,6 @@
 """
 import logging
 import time
-
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from base1.base_page import BasePage
@@ -29,7 +28,7 @@ class LoginPage(BasePage):
     checkcode_fail_loc=(By.XPATH,"//p[@class='el-message__content']")
     checkcode_null_loc = (By.XPATH, "//form[@class ='el-form login-form-body']/div[3]/div/div[2]")
 
-    merchants_center_loc=(By.XPATH,"//div[@class='tag-inside']/ul[6]/li")
+    merchants_center_loc=(By.XPATH,"//div[@class='tag-inside']/ul[5]/li")
 
     # 判断是否登录成功
     login_success_tips_loc = (By.XPATH, "//p[contains(text(),'登录成功')]")

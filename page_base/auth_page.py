@@ -14,7 +14,7 @@ from common import dir_util
 
 class AuthBage(BasePage):
     #定位商户中心按钮
-    merchants_center_loc=(By.XPATH,"//div[@class='tag-inside']/ul[6]/li")
+    merchants_center_loc=(By.XPATH,"//div[@class='tag-inside']/ul[5]/li")
 
     #定位企业信息管理按钮
     enterprise_management_loc=(By.XPATH,"//div[contains(text(),'企业信息管理')]")
