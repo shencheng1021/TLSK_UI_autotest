@@ -40,6 +40,7 @@ class BasePage:
             element=WebDriverWait(self.driver,10).until(EC.element_to_be_clickable(self.locator_element(loc)))
         except:
             log.logger.exception(str(loc)+"元素不可点击",exc_info=True)
+            self.get_screenshot_as_png()
             #print(str(loc)+"元素不可点击")
             raise
         else:
@@ -54,6 +55,7 @@ class BasePage:
             self.locator_element(loc).clear()
         except Exception:
             log.logger.exception("清除文本内容失败",exc_info=True)
+            self.get_screenshot_as_png()
             raise
         else:
             log.logger.info("清除文本内容成功")
@@ -63,6 +65,7 @@ class BasePage:
             self.locator_element(loc).send_keys(key)
         except Exception:
             log.logger.exception(str(loc)+"元素输入框，无法输入值",exc_info=True)
+            self.get_screenshot_as_png()
             raise
         else:
             log.logger.info("[%s]元素输入框，输入值[%s]" % (str(loc),key))
@@ -73,6 +76,7 @@ class BasePage:
             self.locator_element(loc).send_keys(key)
         except Exception:
             log.logger.exception(str(loc)+"元素输入框，无法输入值",exc_info=True)
+            self.get_screenshot_as_png()
             raise
         else:
             log.logger.info("[%s]元素输入框，输入值[%s]" % (str(loc),key))
@@ -92,6 +96,7 @@ class BasePage:
             assert self.get_url() == url
         except Exception as e:
             log.logger.exception("打开[%s]链接失败" % url,exc_info=True)
+            self.get_screenshot_as_png()
             raise e
         else:
             log.logger.info("打开[%s]链接成功" % url)
@@ -102,6 +107,7 @@ class BasePage:
             # return self.locator_element(loc).text
         except Exception:
             log.logger.exception("[%s]获取文本失败",exc_info=True)
+            self.get_screenshot_as_png()
             raise
         else:
             log.logger.info("[%s]获取文本成功，文本值为[%s]" % (str(loc),value))
@@ -157,6 +163,7 @@ class BasePage:
             WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(loc))
         except Exception:
             log.logger.exception('[%s]元素不可操作' % str(loc), exc_info=True)
+            self.get_screenshot_as_png()
         else:
             log.logger.info('[%s]元素可操作' % (str(loc)))
 
@@ -166,6 +173,7 @@ class BasePage:
             value=WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc)).text
         except Exception:
             log.logger.exception('[%s]元素不可见' % str(loc),exc_info=True)
+            self.get_screenshot_as_png()
         else:
             log.logger.info('[%s]元素可见并返回文本[%s]' % (str(loc),value))
             return value
@@ -176,6 +184,7 @@ class BasePage:
             WebDriverWait(self.driver,10).until(EC.visibility_of_element_located(loc))
         except TimeoutException:
             log.logger.exception('等待[%s]元素出现失败' % str(loc),exc_info=True)
+            self.get_screenshot_as_png()
             return False
         else:
             log.logger.info('等待[%s]元素出现成功' % str(loc))
@@ -187,6 +196,7 @@ class BasePage:
             WebDriverWait(self.driver,timeout).until_not(EC.visibility_of_element_located(loc))
         except TimeoutException:
             log.logger.exception('等待[%s]元素消失失败' % str(loc),exc_info=True)
+            self.get_screenshot_as_png()
             return False
         else:
             log.logger.info('等待[%s]元素消失成功' % str(loc))
