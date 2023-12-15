@@ -6,7 +6,13 @@
 @description: 链接砼联数科测试环境数据库进行操作得数据库类
 @time: 2022/4/24 13:56
 """
+import logging
+
 import pymysql
+
+from common.logger_util import Logger
+
+log = Logger(__name__, CmdLevel=logging.INFO, FileLevel=logging.INFO)
 
 class MysqlConnection(object):
     '''
@@ -28,6 +34,7 @@ class MysqlConnection(object):
     def QueryAll(self,sql):
         #查询所有数据
         #数据库断开即重连
+        log.logger.info('执行查询sql语句：'+sql)
         self.reConnnect()
         self.cursor.execute(sql)
         return self.cursor.fetchall()
@@ -35,14 +42,16 @@ class MysqlConnection(object):
     def QueryMany(self,sql,n):
         # 查询几条数据
         # 数据库断开即重连
+        log.logger.info('执行查询sql语句：' + sql)
         self.reConnnect()
         self.cursor.execute(sql)
         return self.cursor.fetchmany(n)
 
     def QueryOne(self,sql):
-        self.reConnnect()
         # 查询一条数据
         # 数据库断开即重连
+        log.logger.info('执行查询sql语句：' + sql)
+        self.reConnnect()
         self.cursor.execute(sql)
         return self.cursor.fetchone()
 
@@ -58,7 +67,7 @@ class MysqlConnection(object):
         数据库操作：增删改查
         DML:insert/update/delete
         '''
-
+        log.logger.info('执行sql语句：' + sql)
         try:
             self.reConnnect()
             self.cursor.execute(sql,params)
