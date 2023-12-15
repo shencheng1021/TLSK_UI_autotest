@@ -84,7 +84,9 @@ class AuthBage(BasePage):
     #定义完善企业信息
     @allure.step("完善企业信息")
     def auth_business_shop(self,key,province,city,district):
+        self.get_screenshot_as_png()
         self.click(AuthBage.merchants_center_loc)
+        self.get_screenshot_as_png()
         self.click(AuthBage.enterprise_management_loc)
         self.click(AuthBage.update_auth_loc)
         self.upload_file(AuthBage.business_upload_loc,key,self.relativepath)

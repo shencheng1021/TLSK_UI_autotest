@@ -110,6 +110,7 @@ class ExtSMPage(BasePage):
     @allure.step("供应商管理列表，点击删除按钮")
     def supplier_del_button(self):
         self.click(ExtSMPage.supplier_del_button_loc)
+        self.is_not_visible(ExtSMPage.supplier_del_button_loc,10)
 
     @allure.step("删除确认弹窗，点击确认按钮")
     def del_alert_confirm(self):

@@ -21,6 +21,7 @@ log = Logger(__name__, CmdLevel=logging.INFO, FileLevel=logging.INFO)
 
 
 class BasePage:
+
     def __init__(self,driver):
         self.driver = driver
 
@@ -39,8 +40,8 @@ class BasePage:
         try:
             element=WebDriverWait(self.driver,10).until(EC.element_to_be_clickable(self.locator_element(loc)))
         except:
-            log.logger.exception(str(loc)+"元素不可点击",exc_info=True)
             self.get_screenshot_as_png()
+            log.logger.exception(str(loc)+"元素不可点击",exc_info=True)
             #print(str(loc)+"元素不可点击")
             raise
         else:
@@ -54,8 +55,8 @@ class BasePage:
             self.element_to_be_clickable(loc)
             self.locator_element(loc).clear()
         except Exception:
-            log.logger.exception("清除文本内容失败",exc_info=True)
             self.get_screenshot_as_png()
+            log.logger.exception("清除文本内容失败",exc_info=True)
             raise
         else:
             log.logger.info("清除文本内容成功")
@@ -64,8 +65,8 @@ class BasePage:
         try:
             self.locator_element(loc).send_keys(key)
         except Exception:
-            log.logger.exception(str(loc)+"元素输入框，无法输入值",exc_info=True)
             self.get_screenshot_as_png()
+            log.logger.exception(str(loc)+"元素输入框，无法输入值",exc_info=True)
             raise
         else:
             log.logger.info("[%s]元素输入框，输入值[%s]" % (str(loc),key))
@@ -75,8 +76,8 @@ class BasePage:
             self.clear_text(loc)
             self.locator_element(loc).send_keys(key)
         except Exception:
-            log.logger.exception(str(loc)+"元素输入框，无法输入值",exc_info=True)
             self.get_screenshot_as_png()
+            log.logger.exception(str(loc)+"元素输入框，无法输入值",exc_info=True)
             raise
         else:
             log.logger.info("[%s]元素输入框，输入值[%s]" % (str(loc),key))
@@ -95,8 +96,8 @@ class BasePage:
             self.driver.get(url)
             assert self.get_url() == url
         except Exception as e:
-            log.logger.exception("打开[%s]链接失败" % url,exc_info=True)
             self.get_screenshot_as_png()
+            log.logger.exception("打开[%s]链接失败" % url,exc_info=True)
             raise e
         else:
             log.logger.info("打开[%s]链接成功" % url)
@@ -105,10 +106,10 @@ class BasePage:
         try:
             value=self.locator_element(loc).text
             # return self.locator_element(loc).text
-        except Exception:
-            log.logger.exception("[%s]获取文本失败",exc_info=True)
+        except Exception as e:
             self.get_screenshot_as_png()
-            raise
+            log.logger.exception("[%s]获取文本失败",exc_info=True)
+            raise e
         else:
             log.logger.info("[%s]获取文本成功，文本值为[%s]" % (str(loc),value))
             return value
@@ -162,8 +163,9 @@ class BasePage:
         try:
             WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(loc))
         except Exception:
-            log.logger.exception('[%s]元素不可操作' % str(loc), exc_info=True)
             self.get_screenshot_as_png()
+            log.logger.exception('[%s]元素不可操作' % str(loc), exc_info=True)
+
         else:
             log.logger.info('[%s]元素可操作' % (str(loc)))
 
