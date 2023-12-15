@@ -208,16 +208,17 @@ class BasePage:
         allure.attach(img, '失败截图', allure.attachment_type.PNG)
 
     def assertEqual(self,expectation,actual):
+        self.get_screenshot_as_png()
         try:
             assert expectation == actual
         except AssertionError as e:
-            self.get_screenshot_as_png()
             log.logger.error("断言失败！预期结果：%s，实际结果：%s" % (expectation,actual),exc_info=True)
             raise e
         else:
             log.logger.info("断言成功！预期结果：%s，实际结果：%s" % (expectation,actual))
 
     def assertIn(self,expectation,actual):
+        self.get_screenshot_as_png()
         try:
             assert expectation in actual
         except AssertionError as e:

@@ -8,6 +8,8 @@
 """
 import logging
 import time
+
+import allure
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from base1.base_page import BasePage
@@ -37,6 +39,7 @@ class LoginPage(BasePage):
 
     #页面的动作
     #登录动作
+    @allure.step("登录页面登录操作")
     def slmode_eshop(self,id,username,password):
         try:
             self.goto_iframe(id)
@@ -52,6 +55,7 @@ class LoginPage(BasePage):
         else:
             pass
 
+    @allure.step("登录成功")
     def login_success_eshop(self,id,username,password):
         log.logger.info('**********执行登录动作开始**********')
         self.goto_iframe(id)
@@ -66,6 +70,7 @@ class LoginPage(BasePage):
         #self.is_not_visible(LoginPage.login_success_tips_loc,3)
         log.logger.info('**********执行登录动作结束**********')
 
+    @allure.step("进入商户中心页面")
     def goto_merchants_center(self):
         try:
             self.quit_iframe()

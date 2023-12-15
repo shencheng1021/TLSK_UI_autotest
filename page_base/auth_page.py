@@ -7,6 +7,8 @@
 @time: 2023/9/11 10:57
 """
 import time
+
+import allure
 from selenium.webdriver.common.by import By
 from base1.base_page import BasePage
 from common import dir_util
@@ -80,6 +82,7 @@ class AuthBage(BasePage):
 
 
     #定义完善企业信息
+    @allure.step("完善企业信息")
     def auth_business_shop(self,key,province,city,district):
         self.click(AuthBage.merchants_center_loc)
         self.click(AuthBage.enterprise_management_loc)
@@ -90,6 +93,7 @@ class AuthBage(BasePage):
         self.select_value(AuthBage.district_select_loc,district)
 
     #定义完善法人信息
+    @allure.step("完善法人信息")
     def auth_lagal_shop(self,idcardfront,idcardbackside,phone):
         self.upload_file(AuthBage.legal_front_loc,idcardfront,self.relativepath)
         time.sleep(3)
@@ -97,6 +101,7 @@ class AuthBage(BasePage):
         self.send_keys(AuthBage.legal_phone_loc,phone)
 
     #定义联系人信息
+    @allure.step("完善联系人信息")
     def auth_contactperson_shop(self,idcardfront,idcardbackside,phone):
         self.upload_file(AuthBage.contactperson_front_loc,idcardfront,self.relativepath)
         time.sleep(3)
@@ -104,12 +109,14 @@ class AuthBage(BasePage):
         self.send_keys(AuthBage.contactperson_phone_loc,phone)
 
     #定义维护客户来源
+    @allure.step("完善客户来源信息")
     def auth_source_shop(self):
         self.click(AuthBage.customersource_loc)
         self.click(AuthBage.goal_source_loc)
         time.sleep(1)
 
     #定义保存实名认证信息
+    @allure.step("保存实名认证信息")
     def auth_submit(self,key):
         if key=='1':
             self.click(AuthBage.submmit_loc)
@@ -119,17 +126,20 @@ class AuthBage(BasePage):
             time.sleep(3)
 
     #进入实名认证页面
+    @allure.step("进入实名认证页面")
     def goto_auth_shop(self):
         self.click(AuthBage.merchants_center_loc)
         self.click(AuthBage.enterprise_management_loc)
         time.sleep(3)
 
     #检查是否实名认证成功
+    @allure.step("检查是否实名认证成功")
     def check_point(self):
         expected=self.get_text(AuthBage.ahth_success_loc)
         return expected
 
     #检查是否出现重复认证提示
+    @allure.step("检查是否出现重复认证提示")
     def check_point_2(self):
         failtips=self.get_text(AuthBage.failtips_loc_)
         return failtips
