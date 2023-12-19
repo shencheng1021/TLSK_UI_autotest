@@ -1,0 +1,17 @@
+-
+  name: 银联商户合作资料审核接口
+  request:
+    method: post
+    url: http://172.24.100.75:10001/expose/union/identify/audit/save
+    headers:
+      Content-Type: application/json;charset=UTF-8
+      Token: eyJ1c2VySWQiOiIxMzczMDg3MDA4NiIsInRva2VuIjoiNWMzNWM5ZTg3ODQzNGY0YWE1MjBhNTE3NjdiMjUwMDQifQ==
+    data:
+      traderNo: TNUR2023121800028467
+      identityStatus: 2
+      dataList:
+        - type: "01"
+          status: FAILED
+          remark: 营业执照错误
+  assert: 操作成功
+

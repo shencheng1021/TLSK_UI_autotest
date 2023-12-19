@@ -19,6 +19,7 @@ from common.logger_util import Logger
 from common.mysql_util import MysqlConnection
 import allure
 
+from common.request_util import RequestUtil
 from common.yaml_util import YamlUtil
 
 log=Logger(__name__,CmdLevel=logging.INFO, FileLevel=logging.INFO)
@@ -67,6 +68,7 @@ def business_information():
     data={'companyName' : business_name,'busiLiceNo':business_code}
     YamlUtil().write_extract_yaml(data)
     log.logger.info('***********初始化企业信息完成************')
+    RequestUtil().get_token('issuer','17754856657')
 
 # @allure.step("清除extract.yaml文件内容")
 # @pytest.fixture(scope='class',autouse=True)

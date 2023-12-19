@@ -13,6 +13,7 @@ from selenium.webdriver.common.by import By
 
 from base1.base_page import BasePage
 from common import dir_util
+from common.yaml_util import YamlUtil
 
 
 class UnionIdentifyPage(BasePage):
@@ -138,9 +139,19 @@ class UnionIdentifyPage(BasePage):
     #定位提交成功提示
     submit_success_tips_loc=(By.XPATH,"//div[@class='info-text middle-center']")
 
+    #审核退回页面状态
+    reject_status_loc=(By.XPATH,"//span[@class='info-status']")
+
+    #营业执照审核退款的提示图片定位
+    bl_reject_img_loc=(By.XPATH,"//div[@class='company-base']/form/div[1]/div/div/div[2]/div/div[2]/div/div/img[2]")
+
+    #营业执照审核退回材料状态
+    bl_reject_status_loc=(By.XPATH,"//span[contains(text(),'营业执照错误')]")
+
 
     @allure.step('进入商户合作资料填报url')
-    def goto_identify_page(self,url):
+    def goto_identify_page(self):
+        url = YamlUtil().read_extract_yaml('identifyPage')
         self.goto_url(url)
     @allure.step('检查是否弹出上传资料说明弹窗')
     def check_data_description_alert(self):
@@ -246,6 +257,22 @@ class UnionIdentifyPage(BasePage):
     @allure.step('点击商户合作资料收集提交按钮')
     def click_submit(self):
         self.click(self.submit_btn_loc)
+
+    @allure.step('商户合作资料重新提交')
+    def resubmit_shop(self):
+        self.goto_identify_page()
+        self.click(self.update_button_loc)
+        self.click_next_step_button()
+        self.click_acc_next_step()
+        self.click_submit()
+
+
+    @allure.step('检查商户合作资料收集页面状态是否正确')
+    def check_reject_status(self):
+        page_status=self.is_visible_text(self.reject_status_loc)
+        self.move_to_element(self.bl_reject_img_loc)
+        bl_status=self.is_visible_text(self.bl_reject_status_loc)
+        return page_status,bl_status
 
     @allure.step('商户认证资料提交申请成功提示检查点')
     def check_submit_success(self):

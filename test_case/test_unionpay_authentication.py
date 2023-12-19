@@ -14,6 +14,7 @@ import pytest
 
 from base1.base_util import BaseUtil
 from common import dir_util
+from common.mysql_util import MysqlConnection
 from common.request_util import RequestUtil
 from common.yaml_util import YamlUtil
 from page_base.union_identify_page import UnionIdentifyPage
@@ -39,8 +40,7 @@ class TestUnionpayAuth(BaseUtil):
     @allure.title('进入商户合作资料填报页面')
     def test_goto_identifypage(self):
         UIP = UnionIdentifyPage(self.driver)
-        url=YamlUtil().read_extract_yaml('identifyPage')
-        UIP.goto_identify_page(url)
+        UIP.goto_identify_page()
         actual=UIP.check_data_description_alert()
         UIP.assertEqual('上传资料说明',actual)
 
@@ -49,7 +49,7 @@ class TestUnionpayAuth(BaseUtil):
         url = YamlUtil().read_extract_yaml('identifyPage')
         business_name=YamlUtil().read_extract_yaml('companyName')
         UIP = UnionIdentifyPage(self.driver)
-        UIP.goto_identify_page(url)
+        UIP.goto_identify_page()
         UIP.input_business_information('营业执照.jpg',business_name)
         UIP.input_legal_information('身份证正面.jpg','身份证背面.jpg','17745474453')
         UIP.input_contact_person_information('身份证正面.jpg','身份证背面.jpg','17745474454')
@@ -71,6 +71,38 @@ class TestUnionpayAuth(BaseUtil):
         actual=UIP.check_submit_success()
         UIP.assertEqual('银联进件资料已提交审核，审核进度等待平台通知！',actual)
 
+    @allure.title('商户合作资料审核拒绝接口测试')
+    @pytest.mark.parametrize('caseinfo',YamlUtil().read_yaml(dir_util.testcase_dir,'union_audit.yml'))
+    def test_audit_reject(self,caseinfo):
+        url = caseinfo['request']['url']
+        method = caseinfo['request']['method']
+        caseinfo['request']['headers']['Token'] = YamlUtil().read_extract_yaml('token_issuer')
+        headers = caseinfo['request']['headers']
+        busiLiceNo = YamlUtil().read_extract_yaml('busiLiceNo')
+        sql="SELECT trader_no FROM `t_business_identify` where busi_lice_no = '" + busiLiceNo+ "'"
+        traderNo = MysqlConnection('tjf_manage01').QueryOne(sql)[0]
+        print(traderNo)
+        caseinfo['request']['data']['traderNo'] = traderNo
+        data = caseinfo['request']['data']
+        rep=RequestUtil().send_request(method,url,headers=headers,json=data)
+        result=json.loads(rep)
+        UIP = UnionIdentifyPage(self.driver)
+        UIP.assertEqual(caseinfo['assert'], result['msg'])
+
+    @allure.title('商户合作资料审核拒绝后状态查询')
+    def test_reject_status(self):
+        UIP = UnionIdentifyPage(self.driver)
+        UIP.goto_identify_page()
+        result=UIP.check_reject_status()
+        UIP.assertEqual('进件失败', result[0])
+        UIP.assertEqual('营业执照错误',result[1])
+
+    @allure.title('商户合作资料审核拒绝后重新提交')
+    def test_resubmit(self):
+        UIP = UnionIdentifyPage(self.driver)
+        UIP.resubmit_shop()
+        actual=UIP.check_submit_success()
+        UIP.assertEqual('银联进件资料已提交审核，审核进度等待平台通知！',actual)
 
 if __name__ == '__main__':
     pytest.main()
