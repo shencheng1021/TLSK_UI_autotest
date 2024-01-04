@@ -11,10 +11,6 @@ import os
 import time
 
 import pytest
-from selenium import webdriver
-
-from base1.base_page import BasePage
-from base1.base_util import BaseUtil
 from common.logger_util import Logger
 from common.mysql_util import MysqlConnection
 import allure
@@ -58,7 +54,7 @@ def oa_information_initialization():
     log.logger.info('***********初始化关联的OA信息完成************')
 
 @allure.step("初始化企业信息")
-@pytest.fixture(scope='class',autouse=True)
+@pytest.fixture(scope='class',autouse=False)
 def business_information():
     YamlUtil().clean_extract_yaml()
     log.logger.info('***********清除extract.yaml文件内容完成************')

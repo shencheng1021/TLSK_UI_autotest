@@ -7,8 +7,6 @@
 @time: 2022/4/13 9:34
 """
 import json
-import time
-
 import allure
 import pytest
 
@@ -20,6 +18,7 @@ from common.yaml_util import YamlUtil
 from page_base.union_identify_page import UnionIdentifyPage
 
 @allure.feature('银联认证商户合作资料填报UI自动化测试')
+@pytest.mark.usefixtures('business_information')
 class TestUnionpayAuth(BaseUtil):
 
     @allure.title('获取商户合作资料填报页面url')
