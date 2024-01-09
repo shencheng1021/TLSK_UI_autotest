@@ -20,6 +20,7 @@ from page_base.login_page import LoginPage
 
 log=Logger(__name__, CmdLevel=logging.INFO, FileLevel=logging.INFO)
 
+@allure.feature('保理E产品功能验证')
 class TestFkdl(BaseUtil):
 
     @allure.title("成功进入保理E产品操作页面")

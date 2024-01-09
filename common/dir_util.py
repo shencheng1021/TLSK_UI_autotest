@@ -15,3 +15,5 @@ testcase_dir=sys_dir+'data/'
 
 #银联认证资料的路径
 union_data_dir=sys_dir+'data/union_data/'
+
+chrome_dir=sys_dir+'chrome/data'
