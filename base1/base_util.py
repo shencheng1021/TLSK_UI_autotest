@@ -22,7 +22,7 @@ class BaseUtil:
         global driver
         if sys.platform == 'win32':
             self.driver = webdriver.Chrome()
-        elif sys.platform == 'linux2':
+        elif sys.platform == 'linux':
             chrome_options = Options()
             chrome_options.add_argument('--headless') # 浏览器不提供可视化页面. linux下如果系统不支持可视化不加这条会启动失败
             chrome_options.add_argument('--no-sandbox')  # 解决DevToolsActivePort文件不存在的报错
@@ -35,7 +35,7 @@ class BaseUtil:
             #chrome_options.add_argument('--user-data-dir=/home/jenkins/data')
             chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
             chrome_options.add_experimental_option('useAutomationExtension', False)
-            self.driver = webdriver.Chrome(options=chrome_options, executable_path='/usr/bin/chromedriver')
+            self.driver = webdriver.Chrome(options=chrome_options)
         else:
             log.logger.info('************ %s 运行环境有误***********' % sys.platform)
         driver = self.driver

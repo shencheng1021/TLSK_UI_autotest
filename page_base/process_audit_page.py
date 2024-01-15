@@ -23,7 +23,9 @@ class ProcessAuditPage(BasePage):
     settle_receipt_switch_loc=(By.XPATH,"//span[@class='el-switch__core']")
 
     # 定位Oa签报第一个复选框
-    oa_checkbox_loc = (By.XPATH, "//div[@class='oa-info']/div[2]/div[2]/div/div[3]/table/tbody/tr[1]/td[1]/div/label/span/span")
+    oa_checkbox_loc = (
+    By.XPATH, "//div[@class='oa-info']/div[2]/div[2]/div/div[2]/table/thead/tr/th[1]/div/label/span/span")
+    #oa_checkbox_loc = (By.XPATH, "//div[@class='oa-info']/div[2]/div[2]/div/div[3]/table/tbody/tr[1]/td[1]/div/label/span/span")
 
     #定位付款承诺涵签署按钮
     seal_button_loc=(By.XPATH,'//*[@id="app"]/div[2]/div[1]/div/div[3]/div[4]/div[2]/div[2]/div/div[4]/div[2]/table/tbody/tr/td[6]/div/span/button[1]/span')
