@@ -14,7 +14,9 @@ import pytest
 
 from base1.base_util import BaseUtil
 from common.assert_util import AssertUtil
+from common.excel_util import ExcelUtil
 from common.logger_util import Logger
+from page_base.ext_fncDtl_page import ExtFncdtlPage
 from page_base.ext_page import ExtPage
 from page_base.ext_sign_page import ExtSignPage
 from page_base.ext_signfor_page import ExtSignforPage
@@ -246,6 +248,48 @@ class TestExtdetails(BaseUtil):
         esp.assertEqual('融资基础信息您已确认成功，请点击下一步上传融资材料！', actual)
         #assert actual == '融资基础信息您已确认成功，请点击下一步上传融资材料！'
         log.logger.info("*******融资申请，申请成功，测试结束********")
+
+    @allure.title('补充上传融资材料')
+    def test_temp_upload_financing_material_16(self):
+        log.logger.info("*******融资申请，上传融资材料，测试开始********")
+        lg = LoginPage(self.driver)
+        lg.login_success_eshop('child', '17754211111', '230516')
+        efp=ExtFncdtlPage(self.driver)
+        efp.goto_financing_material_page()
+        efp.upload_financing_material()
+        actual=efp.check_submit_result()
+        efp.assertEqual('操作失败 [发送应收账款信息给银行失败:企业不存在：供应商新101]',actual)
+        log.logger.info("*******融资申请，上传融资材料，测试结束********")
+
+    @allure.title('融资详情页面融信编号查询测试')
+    @pytest.mark.parametrize('index,casename,rxnumber,fncstatus,totality',ExcelUtil().excel_read('ext_data/fddata'))
+    def test_rxnumber_select_17(self,index,casename,rxnumber,fncstatus,totality):
+        log.logger.info("*******融资流水查询，根据融信编号查询，"+casename+"，测试开始********")
+        lg = LoginPage(self.driver)
+        lg.login_success_eshop('child', '17754211111', '230516')
+        efp = ExtFncdtlPage(self.driver)
+        efp.goto_financing_material_page()
+        efp.select_financing_data(rxnumber)
+        if index == 1 :
+            efp.assertEqual(totality,efp.check_select_res_number())
+        else:
+            efp.assertEqual(totality, efp.check_select_res_number())
+            efp.assertEqual(fncstatus, efp.check_financing_status())
+        log.logger.info("*******融资流水查询，根据融信编号查询，" + casename + "，测试结束********")
+
+    @allure.title("待确认融资流水，点击跳转至建信融通页面进行确认")
+    def test_rtJump_18(self):
+        log.logger.info("*******融资详情，跳转至建信融通页面，测试开始********")
+        lg = LoginPage(self.driver)
+        lg.login_success_eshop('child', '17754211111', '230516')
+        efp = ExtFncdtlPage(self.driver)
+        efp.goto_financing_material_page()
+        efp.select_financing_data('credit2024011510252293400001641')
+        efp.click_jumprt_btn()
+        actual=efp.check_window_title()
+        efp.assertEqual('建信融通-建设银行旗下融资服务平台',actual)
+        log.logger.info("*******融资详情，跳转至建信融通页面，测试结束********")
+
 
 
 

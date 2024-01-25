@@ -17,3 +17,6 @@ testcase_dir=sys_dir+'data/'
 union_data_dir=sys_dir+'data/union_data/'
 
 chrome_dir=sys_dir+'chrome/data'
+
+#E信通测试数据路径
+ext_data_dir=sys_dir+'data/ext_data/'

@@ -115,6 +115,10 @@ class BasePage:
             log.logger.info("[%s]获取文本成功，文本值为[%s]" % (str(loc),value))
             return value
 
+    #定义获取当前窗口title的关键字
+    def get_window_title(self):
+        return self.driver.title
+
     #定义下拉列表选择的关键字
     def select_value(self,loc,value):
         s=Select(self.locator_element(loc))
@@ -158,6 +162,21 @@ class BasePage:
     #定义获取当前页面url的关键字
     def get_url(self):
         return self.driver.current_url
+
+    #定义切换到最新窗口的关键字
+    def switch_window(self):
+        handle = self.driver.window_handles  # 获取句柄，得到的是一个列表
+        self.driver.switch_to.window(handle[-1])  # 切换至最新句柄
+
+    #定义切换到指定窗口的关键字
+    def switch_specify_window(self,window_title):
+        all_handle=self.driver.window_handles
+        for handle in all_handle:
+            self.driver.switch_to.window(handle)
+            if self.driver.title == window_title:
+                break
+            else:
+                continue
 
 
     #显示等待
