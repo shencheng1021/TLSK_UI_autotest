@@ -291,8 +291,6 @@ class TestExtdetails(BaseUtil):
         log.logger.info("*******融资详情，跳转至建信融通页面，测试结束********")
 
 
-
-
 if __name__ == '__main__':
     pytest.main()
 

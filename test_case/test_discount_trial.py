@@ -51,7 +51,6 @@ class TestDiscountTrial(BaseUtil):
         lg = LoginPage(self.driver)
         lg.login_success_eshop('child', '13730870050', '230516')
         dt = DiscountTrialPage(self.driver)
-        dt = DiscountTrialPage(self.driver)
         dt.goto_discount_page()
         dt.discount_inquiry(after_time(0), '招商银行')
         actual = dt.check_inquiry_res()
@@ -69,13 +68,3 @@ class TestDiscountTrial(BaseUtil):
         actual = dt.check_inquiry_fail_res()
         dt.assertEqual('请求失败:code:EA3C051 , msg:EA3C051-到期日['+after_time(365)+']只能选择一年范围内', actual)
         log.logger.info('**********验证贴现询价失败，贴现日期选择365天之后,测试结束**********')
-
-
-
-
-
-
-
-
-
-
