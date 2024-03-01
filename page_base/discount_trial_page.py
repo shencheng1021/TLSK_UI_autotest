@@ -61,5 +61,3 @@ class DiscountTrialPage(BasePage):
     @allure.step('检查询价失败结果提示')
     def check_inquiry_fail_res(self):
         return self.get_text(self.inquiry_fail_tip)
-
-

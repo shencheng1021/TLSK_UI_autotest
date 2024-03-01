@@ -29,7 +29,7 @@ class ExtSignPage(BasePage):
     quota_source_input_loc=(By.XPATH,"//input[@placeholder='请选择额度来源']")
 
     #额度来源下拉选项
-    quota_souce_option_loc=(By.XPATH,'/html/body/div[5]/div[1]/div[1]/ul/li[3]/div')
+    quota_souce_option_loc=(By.XPATH,'/html/body/div[5]/div[1]/div[1]/ul/li/div')
 
     #新增融信签发供应商名称输入框定位
     supplier_name_input_loc=(By.XPATH,"//input[@placeholder='请选择供应商']")

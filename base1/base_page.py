@@ -261,9 +261,3 @@ class BasePage:
         else:
             self.get_screenshot_as_png('断言成功')
             log.logger.info("断言成功！预期结果：%s in 实际结果：%s" % (expectation,actual))
-
-
-
-
-
-
