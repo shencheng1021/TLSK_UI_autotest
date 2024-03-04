@@ -22,6 +22,13 @@ def after_time(dates):
     time=n_days_after.strftime('%Y-%m-%d')
     return time
 
+def after01_time(dates):
+    now = datetime.now()
+    delta = timedelta(days=dates)  # days可以为正负数，当为负数时，n_days_after 与n_days_forward 的值与正数时相反；
+    n_days_after = now + delta
+    time = n_days_after.strftime('%Y%m%d')
+    return time
+
 print(after_time(365))
 
 

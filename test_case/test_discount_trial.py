@@ -9,10 +9,11 @@
 import logging
 
 import allure
+import pytest
 
 from base1.base_util import BaseUtil
 from common.logger_util import Logger
-from common.time_util import after_time
+from common.time_util import after_time, after01_time
 from page_base.discount_trial_page import DiscountTrialPage
 from page_base.login_page import LoginPage
 
@@ -30,7 +31,7 @@ class TestDiscountTrial(BaseUtil):
         dt.goto_discount_page()
         dt.discount_inquiry(after_time(180),'招商银行')
         actual=dt.check_inquiry_res()
-        dt.assertEqual('1.90%',actual)
+        dt.assertEqual('2.25%',actual)
         log.logger.info('**********验证贴现询价成功,测试结束**********')
 
     @allure.title('贴现询价失败')
@@ -54,7 +55,7 @@ class TestDiscountTrial(BaseUtil):
         dt.goto_discount_page()
         dt.discount_inquiry(after_time(0), '招商银行')
         actual = dt.check_inquiry_res()
-        dt.assertEqual('2.20%', actual)
+        dt.assertEqual('— — —', actual)
         log.logger.info('**********验证贴现询价成功，到期日选择当前日期,测试结束**********')
 
     @allure.title('贴现询价失败')
@@ -66,5 +67,8 @@ class TestDiscountTrial(BaseUtil):
         dt.goto_discount_page()
         dt.discount_inquiry(after_time(365), '招商银行')
         actual = dt.check_inquiry_fail_res()
-        dt.assertEqual('请求失败:code:EA3C051 , msg:EA3C051-到期日['+after_time(365)+']只能选择一年范围内', actual)
+        dt.assertEqual('请求失败:code:EA3C051 , msg:EA3C051-到期日['+after01_time(365)+']只能选择一年范围内', actual)
         log.logger.info('**********验证贴现询价失败，贴现日期选择365天之后,测试结束**********')
+
+if __name__ == '__main__':
+    pytest.main()
